@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Envi Door Asset (Open) HIGH REZ_0: -4643624684451380655
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

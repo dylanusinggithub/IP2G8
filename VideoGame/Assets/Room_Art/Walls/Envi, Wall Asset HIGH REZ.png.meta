@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Envi, Wall Asset HIGH REZ_0: 2573188711585966272
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

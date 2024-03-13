@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - ItemPopup
   - Enemy2
+  - IInteractable
   layers:
   - Default
   - TransparentFX

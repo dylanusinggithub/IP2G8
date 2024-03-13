@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Envi, Corner Wall Asset HIGH REZ_0: 76078412743597068
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Envi, Broken Wall Asset (HIGH REZ)_0: 1752935628479840048
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
