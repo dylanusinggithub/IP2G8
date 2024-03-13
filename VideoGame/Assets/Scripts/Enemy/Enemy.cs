@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 
     NavMeshAgent agent;
 
-    public float health = 100;
+    public float health = 10;
     bool isDead = false;
     public GameObject me;
     public GameObject player;
@@ -80,11 +80,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage) //Take damage function
+    public void TakeDamage(float damage) //Take damage function
     {
         health -= damage;
 
-        if (health < 0)
+        if (health <= 0)
         {
             isDead = true; //If health is less than 0, enemy is dead
 
@@ -95,6 +95,15 @@ public class Enemy : MonoBehaviour
             {
                 SpawnDrop(enemyDrop);
             }
+        }
+    }
+    void OnGUI()
+    {
+        if (target != null && !isDead)
+        {
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+            screenPosition.y += 40;
+            GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 100, 20), "HP: " + health);
         }
     }
 }

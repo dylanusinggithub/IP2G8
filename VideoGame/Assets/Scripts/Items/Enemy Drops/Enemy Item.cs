@@ -56,7 +56,7 @@ public class EnemyItem : MonoBehaviour
                     gameManager.AddGems(1);
                     break;
 
-                case "heart_item_0":
+                case "heart_full_0":
                     //Heart Item
                     Debug.Log("You Picked Up a Heart");
                     break;

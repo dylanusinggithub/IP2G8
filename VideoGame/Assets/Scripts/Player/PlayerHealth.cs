@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float health;
-    public float maxHealth;
+    public float health = 6f;
+    public float maxHealth = 6f;
     private bool isDead;
 
     public static event Action OnPlayerDamaged;

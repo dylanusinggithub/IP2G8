@@ -8,6 +8,7 @@ public class Item : MonoBehaviour
     [Header("Passed In Variables")]
     private Sprite chosenItem;
     private Sprite[] itemsArray;
+    private GameObject particlesObject; // Reference to the particles object
 
     [Header("Sending Variables")]
     public string itemName;
@@ -25,6 +26,11 @@ public class Item : MonoBehaviour
         this.itemsArray = itemsArray;
     }
 
+    public void SetParticles(GameObject particles)
+    {
+        particlesObject = particles;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -35,57 +41,63 @@ public class Item : MonoBehaviour
                 //Common Items
 
                 case "bootsOfSwiftness":
+
                     //Boots Action
                     PlayerControls playerControls = other.GetComponent<PlayerControls>();
                     playerControls.StatboostSpeed();
 
+                    //Boots Description
                     itemName = "Boots of Swiftness";
                     description = "Gives the player a bonus movespeed of 10%";
                     rarity = "common";
 
-                    Debug.Log("Bonus MoveSpeed!");
                 break;
 
-                case "amuletOfVitality":
-                    //Boots Action
-
-                    itemName = "Boots of Swiftness";
-                    description = "Gives the player a bonus movespeed of 10%";
-                    rarity = "common";
-
-                    Debug.Log("Bonus MoveSpeed!");
-                    break;
-
                 case "gauntletsOfStrength":
-                    //Health Action
-                    PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-                    playerHealth.MaxHealthIncrease();
 
+                    //Gauntlets Action
+
+
+                    //Gauntlets Description
                     itemName = "Gauntlet's Of Strength";
                     description = "Grants a bonus Heart Container";
                     rarity = "common";
 
-                    Debug.Log("Bonus Health!");
-                break;
-
-                case "steelCapBoots":
-                    //Ring Action
-
-                    itemName = "Steelcap Boots";
-                    description = "Gives the player a bonus movespeed of 10%";
-                    rarity = "common";
-
-                    Debug.Log("Amulet of Vitality!");
                     break;
 
-                case "charmOfFortune":
-                    //Ring Action
+                case "amuletOfVitality":
 
-                    itemName = "Charm Of Fortune";
-                    description = "Gives the player a bonus movespeed of 10%";
+                    //Amulet Action
+                    PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+                    playerHealth.MaxHealthIncrease();
+
+                    //Amulet Description
+                    itemName = "Amulet of Vitality";
+                    description = "Increases Maximum Health";
                     rarity = "common";
 
-                    Debug.Log("Amulet of Vitality!");
+                    break;
+
+                case "steelCapBoots":
+
+                    //Boots Action
+
+                    //Boots Description
+                    itemName = "Steelcap Boots";
+                    description = "Temporary Armor Gain";
+                    rarity = "common";
+
+                break;
+
+                case "charmOfFortune":
+
+                    //Charm Action
+
+                    //Charm Description
+                    itemName = "Charm Of Fortune";
+                    description = "Enemy Drop Rate Increase";
+                    rarity = "common";
+
                     break;
 
                 //Rare Items
@@ -134,8 +146,10 @@ public class Item : MonoBehaviour
                     Debug.LogWarning("Nothing Assigned: " + chosenItem.name);
                     break;
             }
+
             //Destroy object after collision with player
             Destroy(gameObject);
+            Destroy(particlesObject);
             itemDisplay.ItemDisplay(itemName, description, rarity);
         }
     }
