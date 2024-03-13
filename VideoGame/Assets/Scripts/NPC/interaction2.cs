@@ -9,6 +9,8 @@ public class interaction2 : MonoBehaviour
     public Text dialogueText;
     public string[] dialogue;
     private int index;
+    public Text textToShow;
+    public GameObject popUpPanel;
 
     public GameObject contButton;
     public float wordSpeed;
@@ -18,12 +20,13 @@ public class interaction2 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
-            if (dialoguePanel.activeInHierarchy)
+            if (dialoguePanel.activeInHierarchy && popUpPanel.activeInHierarchy)
             {
                 zeroText();
             }
             else
             {
+                popUpPanel.SetActive(true);
                 dialoguePanel.SetActive(true);
                 StartCoroutine(Typing());
             }
@@ -40,6 +43,7 @@ public class interaction2 : MonoBehaviour
         dialogueText.text = "";
         index = 0;
         dialoguePanel.SetActive(false);
+        textToShow.gameObject.SetActive(false);
     }
 
     IEnumerator Typing()
@@ -72,6 +76,7 @@ public class interaction2 : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsClose = true;
+            textToShow.gameObject.SetActive(true);
         }
     }
 
@@ -79,6 +84,7 @@ public class interaction2 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            textToShow.gameObject.SetActive(false);
             playerIsClose = false;
             zeroText();
         }
