@@ -27,5 +27,6 @@ public class SeedState : State
         GameObject seedobject = Instantiate(seed);
         seedobject.transform.position = player.transform.position;
         seedover = true;
+        //lemme change this rq
     }
 }
