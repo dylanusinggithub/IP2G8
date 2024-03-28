@@ -36,6 +36,7 @@ public class Melee : MonoBehaviour
                 string randomSound = hitSoundOptions[Random.Range(0, hitSoundOptions.Length)];
                 audioManager.PlayAudio(randomSound);
             }
+            
         }
 
         if (collision.CompareTag("Enemy2") && !hitEnemies.Contains(collision))
@@ -52,7 +53,10 @@ public class Melee : MonoBehaviour
                 audioManager.PlayAudio(randomSound);
             }
         }
+        
     }
+
+    
 
     //Ground Enemy Knockback
     private void ApplyKnockbackToEnemy(Enemy enemy, Vector3 origin)
