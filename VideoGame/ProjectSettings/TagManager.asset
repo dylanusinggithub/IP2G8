@@ -9,6 +9,8 @@ TagManager:
   - Enemy2
   - Shield
   - BossCamera
+  - breakable
+  - breakablebarrel
   layers:
   - Default
   - TransparentFX

@@ -71762,14 +71762,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1063059136}
     m_Modifications:
-    - target: {fileID: 2938159636525568978, guid: d77e87ac8407a214e903fa88f394e42b, type: 3}
-      propertyPath: m_SortingLayer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2938159636525568978, guid: d77e87ac8407a214e903fa88f394e42b, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 2038771645
-      objectReference: {fileID: 0}
     - target: {fileID: 7334330078044969913, guid: d77e87ac8407a214e903fa88f394e42b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.16
@@ -78165,6 +78157,8 @@ GameObject:
   - component: {fileID: 1133074700}
   - component: {fileID: 1133074699}
   - component: {fileID: 1133074698}
+  - component: {fileID: 1133074701}
+  - component: {fileID: 1133074702}
   - component: {fileID: 1133074697}
   m_Layer: 3
   m_Name: Melee
@@ -78586,6 +78580,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1133074701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133074695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e8d2e1fb1f623468e63c8d0d8ef04b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1133074702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133074695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3609432ff83a490418c9be8dc6657ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1150352181
 GameObject:
   m_ObjectHideFlags: 0
