@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyCheck : MonoBehaviour
 {
     public Transform enemyParent;
-    public int enemyCount = 0;
+    public int enemyCount = 0; //Tracks enemy count
 
     [SerializeField]
     private GameObject[] objectsToDisable;
@@ -14,6 +14,7 @@ public class EnemyCheck : MonoBehaviour
 
     void Start()
     {
+        //Runs initial check to see if a room is empty by default
         if (enemyParent == null)
         {
             Debug.LogError("Parent object reference is not assigned!");
@@ -29,6 +30,7 @@ public class EnemyCheck : MonoBehaviour
 
     void Update()
     {
+        //Runs the object script if the enemy count is equal to 0
         int currentEnemyCount = enemyParent.childCount;
 
         if (currentEnemyCount != enemyCount)
@@ -43,6 +45,7 @@ public class EnemyCheck : MonoBehaviour
 
     void Objects()
     {
+        //Disables / Enables the object based on which array they were entered into
         foreach (GameObject obj in objectsToDisable)
         {
             obj.SetActive(false);

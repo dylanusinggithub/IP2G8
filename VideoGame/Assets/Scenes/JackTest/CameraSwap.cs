@@ -14,6 +14,7 @@ public class CameraSwap : MonoBehaviour
 
     void Start()
     {
+        //Finds the main camera in the game
         cam = Camera.main.GetComponent<CameraNew>();
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -21,10 +22,10 @@ public class CameraSwap : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            //moves camera
+            //Moves camera
             cam.SetTarget(newTarget);
 
-            // player offset
+            //Player Offset
             other.transform.position += playerChange;
 
             EnemyEnable();
@@ -34,6 +35,7 @@ public class CameraSwap : MonoBehaviour
 
     void EnemyEnable()
     {
+        //Enables enemys when entering the room they are assigned too
         foreach (GameObject obj in objectsToEnable)
         {
             obj.SetActive(true);
