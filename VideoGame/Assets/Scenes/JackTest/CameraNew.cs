@@ -7,6 +7,7 @@ public class CameraNew : MonoBehaviour
 
     private void Update()
     {
+        //If the reference isn't null it moves towards the reference
         if(target != null)
         {
             Vector3 targetPosition = target.position;

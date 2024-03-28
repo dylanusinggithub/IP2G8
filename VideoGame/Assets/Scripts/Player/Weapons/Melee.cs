@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Melee : MonoBehaviour
 {
+
     [Header("Melee Variables")]
     private WeaponAim weaponScript;
     private float meleeDamage;
-    public float knockbackDuration = 0.2f; // Adjust this value as needed
+    public float knockbackDuration = 0.2f; //Adjust here on in inspector
 
     public AudioManager audioManager;
     public string[] hitSoundOptions = { "HitSoundOne", "HitSoundTwo", "HitSoundThree" };
