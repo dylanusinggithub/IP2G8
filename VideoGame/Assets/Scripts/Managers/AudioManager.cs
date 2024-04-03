@@ -9,11 +9,32 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] audioClips;
     private Dictionary<string, AudioClip> audioClipDictionary = new Dictionary<string, AudioClip>();
 
+    private Transform playerTransform;
+
     private void Awake()
     {
         foreach (AudioClip clip in audioClips)
         {
             audioClipDictionary.Add(clip.name, clip);
+        }
+    }
+
+    private void Update()
+    {
+        //Check the player exist's
+        if (playerTransform == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                playerTransform = player.transform;
+            }
+        }
+
+        //Follow the player
+        if (playerTransform != null)
+        {
+            transform.position = playerTransform.position;
         }
     }
 

@@ -8,11 +8,12 @@ public class DebugMenu : MonoBehaviour
     private HealthSystem healthSystem;
     private WeaponAim weaponAim;
     private GameManager gameManager;
-    private bool isDebugVisible = true;
+    public bool isDebugVisible = false;
     private float debugMenuYOffset = 130f;
 
     void Start()
     {
+        isDebugVisible = false;
         playerControls = FindFirstObjectByType<PlayerControls>();
         healthSystem = FindFirstObjectByType<HealthSystem>();
         weaponAim = FindFirstObjectByType<WeaponAim>();
