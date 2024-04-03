@@ -45,7 +45,10 @@ public class EnemyBulletScript : MonoBehaviour
                 player.TakeDamage(damage);
                 player.GetComponent<PlayerControls>().hitFlash = true;
             }
-
+                Destroy(gameObject);
+        }
+        else if (other.gameObject.CompareTag("Walls"))
+        {
             Destroy(gameObject);
         }
     }

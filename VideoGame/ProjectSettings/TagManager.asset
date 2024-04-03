@@ -11,6 +11,7 @@ TagManager:
   - BossCamera
   - breakable
   - breakablebarrel
+  - Walls
   layers:
   - Default
   - TransparentFX

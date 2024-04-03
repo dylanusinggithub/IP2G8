@@ -30,6 +30,11 @@ public class Ranged : MonoBehaviour
             collision.gameObject.GetComponent<FlyingEnemy>().TakeDamage(rangedDamage);
             Destroy(gameObject);
         }
+
+        else if (!collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Update()
