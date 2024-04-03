@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: dd88c3695e55f6f41a335dcaa08d605f
+guid: 33d56d4ce6d63df448574b72661a9821
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7539509342704210117
-    second: door_07_0
+      213: -123659680181622635
+    second: Rock_small_01_normal_0
+  - first:
+      213: 1587534395408754200
+    second: Rock_small_01_normal_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: door_07_0
+      name: Rock_small_01_normal_0
       rect:
         serializedVersion: 2
-        x: 74
-        y: 201
-        width: 245
-        height: 497
+        x: 10
+        y: 8
+        width: 207
+        height: 184
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +117,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5c09f981dc7b1a860800000000000000
-      internalID: 7539509342704210117
+      spriteID: 5986cb11d2ca84ef0800000000000000
+      internalID: -123659680181622635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock_small_01_normal_1
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 60
+        width: 39
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 816ad0b1f1e080610800000000000000
+      internalID: 1587534395408754200
       vertices: []
       indices: 
       edges: []
@@ -130,8 +154,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      door_07_0: 7539509342704210117
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

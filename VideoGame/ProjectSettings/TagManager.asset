@@ -63,6 +63,9 @@ TagManager:
   - name: Player
     uniqueID: 1245536511
     locked: 0
+  - name: RimLit
+    uniqueID: 1783782521
+    locked: 0
   - name: Enemy
     uniqueID: 3281405211
     locked: 0

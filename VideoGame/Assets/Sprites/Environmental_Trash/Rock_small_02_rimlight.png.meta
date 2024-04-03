@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: dd88c3695e55f6f41a335dcaa08d605f
+guid: fc4e504a71a8fc14eadabb5acff0ff0c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7539509342704210117
-    second: door_07_0
+      213: 4330454776557898178
+    second: Rock_small_02_rimlight_0
+  - first:
+      213: 7887449108739683782
+    second: Rock_small_02_rimlight_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: door_07_0
+      name: Rock_small_02_rimlight_0
       rect:
         serializedVersion: 2
-        x: 74
-        y: 201
-        width: 245
-        height: 497
+        x: 29
+        y: 26
+        width: 198
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +117,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5c09f981dc7b1a860800000000000000
-      internalID: 7539509342704210117
+      spriteID: 2c980a0fcadd81c30800000000000000
+      internalID: 4330454776557898178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock_small_02_rimlight_1
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 11
+        width: 43
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c57666cc29d57d60800000000000000
+      internalID: 7887449108739683782
       vertices: []
       indices: 
       edges: []
@@ -130,8 +154,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      door_07_0: 7539509342704210117
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
