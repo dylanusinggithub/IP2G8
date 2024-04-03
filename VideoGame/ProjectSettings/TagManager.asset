@@ -54,6 +54,9 @@ TagManager:
   - name: Background
     uniqueID: 2525943445
     locked: 0
+  - name: walls
+    uniqueID: 2427066995
+    locked: 0
   - name: Enviroment Back
     uniqueID: 3364657005
     locked: 0
@@ -69,12 +72,12 @@ TagManager:
   - name: Enemy
     uniqueID: 3281405211
     locked: 0
-  - name: Black Room divider
-    uniqueID: 1217499615
-    locked: 0
   - name: Player Attacks
     uniqueID: 4027355953
     locked: 0
   - name: Enviroment Front
     uniqueID: 2038771645
+    locked: 0
+  - name: Black Room divider
+    uniqueID: 1217499615
     locked: 0

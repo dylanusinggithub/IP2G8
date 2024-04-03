@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 6e1399652c1384d4398d2f9eacfb0e2c
+guid: 9660e321f75601d49b9ce15795428fa5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8924377768712462973
-    second: itempedestal_0
-  - first:
-      213: -5405142873708874844
-    second: itempedestal_1
-  - first:
-      213: -2333488967837094900
-    second: itempedestal_2
+      213: 247782949865055794
+    second: wall_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -102,72 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: itempedestal_0
+      name: wall_2_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 33
-        width: 28
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d72ef791c42c9db70800000000000000
-      internalID: 8924377768712462973
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: itempedestal_1
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 14
-        width: 190
-        height: 129
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a3395ca1331df4b0800000000000000
-      internalID: -5405142873708874844
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: itempedestal_2
-      rect:
-        serializedVersion: 2
-        x: 199
+        x: 61
         y: 32
-        width: 11
-        height: 7
+        width: 5059
+        height: 326
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c0ce6c8a528cd9fd0800000000000000
-      internalID: -2333488967837094900
+      spriteID: 236ea14b74d407300800000000000000
+      internalID: 247782949865055794
       vertices: []
       indices: 
       edges: []
@@ -184,19 +123,17 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 7532c9b4bae29a945aa89ea63a8745c1
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures:
-    - texture: {fileID: 2800000, guid: 2f6321975aa5f0442871d63d5836e74b, type: 3}
+    - texture: {fileID: 2800000, guid: b3602225563b67c42bb617b3f54408ab, type: 3}
       name: _NormalMap
     nameFileIdTable:
-      itempedestal_0: 8924377768712462973
-      itempedestal_1: -5405142873708874844
-      itempedestal_2: -2333488967837094900
+      wall_2_0: 247782949865055794
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
