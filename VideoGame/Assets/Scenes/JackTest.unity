@@ -84396,6 +84396,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doors
       objectReference: {fileID: 0}
+    - target: {fileID: 6207659015099458253, guid: bfd8dbac14e93b44b89ed8ce15a0e8a2, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207659015099458253, guid: bfd8dbac14e93b44b89ed8ce15a0e8a2, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1867900301
+      objectReference: {fileID: 0}
     - target: {fileID: 7445086662322117658, guid: bfd8dbac14e93b44b89ed8ce15a0e8a2, type: 3}
       propertyPath: newTarget
       value: 
@@ -84416,6 +84424,18 @@ PrefabInstance:
       propertyPath: 'objectsToEnable.Array.data[2]'
       value: 
       objectReference: {fileID: 240969137}
+    - target: {fileID: 8172666888975507899, guid: bfd8dbac14e93b44b89ed8ce15a0e8a2, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172666888975507899, guid: bfd8dbac14e93b44b89ed8ce15a0e8a2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172666888975507899, guid: bfd8dbac14e93b44b89ed8ce15a0e8a2, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1867900301
+      objectReference: {fileID: 0}
     - target: {fileID: 8929417784348799105, guid: bfd8dbac14e93b44b89ed8ce15a0e8a2, type: 3}
       propertyPath: m_IsActive
       value: 0
