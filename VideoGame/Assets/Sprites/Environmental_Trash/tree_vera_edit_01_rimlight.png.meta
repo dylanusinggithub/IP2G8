@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tree_vera_edit_01_rimlight_0: -7738500725248325931
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

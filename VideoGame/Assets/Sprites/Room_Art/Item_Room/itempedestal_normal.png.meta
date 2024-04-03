@@ -178,7 +178,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      itempedestal_normal_0: 4944619014048734998
+      itempedestal_normal_1: 2110707868718348867
+      itempedestal_normal_2: -812336046018665092
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

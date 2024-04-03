@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bush_vera_rimlight_0: 8569203924964004302
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

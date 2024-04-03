@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      doorframe_new_top_rimlight_0: -1059425559487184755
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

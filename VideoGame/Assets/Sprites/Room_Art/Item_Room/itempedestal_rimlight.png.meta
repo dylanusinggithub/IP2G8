@@ -178,7 +178,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      itempedestal_rimlight_0: -3148381290671402269
+      itempedestal_rimlight_1: 778948530263636764
+      itempedestal_rimlight_2: -133070520503648729
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      barrel_stable_rimlight_0: -8131679966956339179
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

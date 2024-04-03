@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Rock_large_02_rimlight_0: -5384937376791487450
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

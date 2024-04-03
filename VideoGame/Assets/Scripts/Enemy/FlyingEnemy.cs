@@ -35,6 +35,8 @@ public class FlyingEnemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Material originalMaterial;
 
+    public bool isFlipped = false;
+
 
     void Start()
     {
@@ -81,7 +83,27 @@ public class FlyingEnemy : MonoBehaviour
             StartCoroutine(HitFlash());
         }
 
+        LookAtPlayer();
         agent.speed = moveSpeed;
+    }
+
+    public void LookAtPlayer()
+    {
+        Vector3 flipped = transform.localScale;
+        flipped.z *= -1f;
+
+        if (transform.position.x > target.position.x && isFlipped)
+        {
+            transform.localScale = flipped;
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = false;
+        }
+        else if (transform.position.x < target.position.x && !isFlipped)
+        {
+            transform.localScale = flipped;
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = true;
+        }
     }
 
     void ChasePlayer()
@@ -94,7 +116,7 @@ public class FlyingEnemy : MonoBehaviour
         // Set destination to current position to stop the enemy
         agent.SetDestination(transform.position);
 
-        transform.right = target.position - transform.position;
+
 
         // Instantiate bullet or any other attack mechanism here
         Instantiate(bullet, bulletPos.position, Quaternion.identity);

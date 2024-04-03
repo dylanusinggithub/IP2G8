@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pot_stable_rimlight_0: -3905064214404400509
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
