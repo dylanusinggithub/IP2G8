@@ -2234,6 +2234,7 @@ GameObject:
   - component: {fileID: 240969141}
   - component: {fileID: 240969140}
   - component: {fileID: 240969139}
+  - component: {fileID: 240969143}
   m_Layer: 0
   m_Name: Ranger
   m_TagString: Enemy2
@@ -2251,7 +2252,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.18, y: 2.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.31270868, y: 0.31270868, z: 0.31270868}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1573566453}
@@ -2319,8 +2320,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.53776026
+  m_Offset: {x: 0, y: 0.058932796}
+  m_Radius: 1.8931974
 --- !u!195 &240969141
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2386,7 +2387,7 @@ SpriteRenderer:
   m_SortingLayerID: 1245536511
   m_SortingLayer: 6
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 2073301168100638187, guid: c0d652ca633dbce42ad123a8a3f1bc52, type: 3}
   m_Color: {r: 0.82641506, g: 0.27714068, b: 0.13565677, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2397,6 +2398,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &240969143
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240969137}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b068b2ab524bf4240b3db05594e72629, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &244532123
 GameObject:
   m_ObjectHideFlags: 0
@@ -79296,7 +79319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1024456763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89237,6 +89260,7 @@ GameObject:
   - component: {fileID: 2051321820}
   - component: {fileID: 2051321819}
   - component: {fileID: 2051321818}
+  - component: {fileID: 2051321822}
   m_Layer: 0
   m_Name: Fly-guy
   m_TagString: Enemy2
@@ -89253,8 +89277,8 @@ Transform:
   m_GameObject: {fileID: 2051321816}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4, y: 2.22, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.34, y: 1.3, z: 0}
+  m_LocalScale: {x: 0.51386, y: 0.51386, z: 0.51386}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1393515254}
@@ -89322,8 +89346,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.53776026
+  m_Offset: {x: -0.33045724, y: -0.29373935}
+  m_Radius: 1.9697406
 --- !u!195 &2051321820
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -89389,17 +89413,39 @@ SpriteRenderer:
   m_SortingLayerID: 1245536511
   m_SortingLayer: 6
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e84839d5618f124d882431a2d243c2b, type: 3}
   m_Color: {r: 1, g: 0.9157224, b: 0.5647059, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.44, y: 5.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2051321822
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051321816}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9ecc757d78d87cf4297d667868e7dd82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2052092927
 GameObject:
   m_ObjectHideFlags: 0
