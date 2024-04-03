@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] audioClips;
     private Dictionary<string, AudioClip> audioClipDictionary = new Dictionary<string, AudioClip>();
 
-    private Transform playerTransform;
+    //private Transform playerTransform;
 
     private void Awake()
     {
@@ -19,24 +19,24 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //Check the player exist's
-        if (playerTransform == null)
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
-            {
-                playerTransform = player.transform;
-            }
-        }
+    //private void Update()
+    //{
+    //    //Check the player exist's
+    //    if (playerTransform == null)
+    //    {
+    //        GameObject player = GameObject.FindGameObjectWithTag("Player");
+    //        if (player != null)
+    //        {
+    //            playerTransform = player.transform;
+    //        }
+    //    }
 
-        //Follow the player
-        if (playerTransform != null)
-        {
-            transform.position = playerTransform.position;
-        }
-    }
+    //    //Follow the player
+    //    if (playerTransform != null)
+    //    {
+    //        transform.position = playerTransform.position;
+    //    }
+    //}
 
     public void Start()
     {
