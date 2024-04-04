@@ -20,6 +20,8 @@ public class RavenScript : MonoBehaviour
 
     private bool skipPrinting = false;
 
+    private PlayerControls playerControls;
+
     void Start()
     {
         dialogueText.gameObject.SetActive(false);
@@ -28,6 +30,8 @@ public class RavenScript : MonoBehaviour
             interactPrompt.SetActive(false);
         }
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
     }
 
     void Update()
@@ -48,6 +52,8 @@ public class RavenScript : MonoBehaviour
             }
             interactPrompt.SetActive(false);
         }
+
+
     }
 
     void StartDialogue()

@@ -20,6 +20,8 @@ public class PlayerControls : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private GameManager gameManager;
 
+    private bool inDialouge = false;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -28,6 +30,8 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
+        if (inDialouge)
+            return;
         //store last move direction
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
