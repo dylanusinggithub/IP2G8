@@ -31,7 +31,7 @@ public class Ranged : MonoBehaviour
             Destroy(gameObject);
         }
 
-        else if (!collision.gameObject.CompareTag("Player"))
+        else if (collision.gameObject.CompareTag("Walls"))
         {
             Destroy(gameObject);
         }
