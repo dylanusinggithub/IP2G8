@@ -5,6 +5,9 @@ using UnityEngine;
 public class AudioFollower : MonoBehaviour
 {
     private Transform playerTransform;
+
+    //Example Comment for Kaz
+
     void Start()
     {
         if (playerTransform == null)
