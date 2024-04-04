@@ -1,15 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("Audio References")]
     public AudioClip[] audioClips;
     private Dictionary<string, AudioClip> audioClipDictionary = new Dictionary<string, AudioClip>();
-
-    //private Transform playerTransform;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -17,26 +14,13 @@ public class AudioManager : MonoBehaviour
         {
             audioClipDictionary.Add(clip.name, clip);
         }
+
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
-
-    //private void Update()
-    //{
-    //    //Check the player exist's
-    //    if (playerTransform == null)
-    //    {
-    //        GameObject player = GameObject.FindGameObjectWithTag("Player");
-    //        if (player != null)
-    //        {
-    //            playerTransform = player.transform;
-    //        }
-    //    }
-
-    //    //Follow the player
-    //    if (playerTransform != null)
-    //    {
-    //        transform.position = playerTransform.position;
-    //    }
-    //}
 
     public void Start()
     {
@@ -47,7 +31,7 @@ public class AudioManager : MonoBehaviour
     {
         if (audioClipDictionary.ContainsKey(fileName))
         {
-            AudioSource.PlayClipAtPoint(audioClipDictionary[fileName], Vector3.zero);
+            audioSource.PlayOneShot(audioClipDictionary[fileName]);
         }
         else
         {
