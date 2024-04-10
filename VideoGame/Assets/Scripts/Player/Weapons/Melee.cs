@@ -74,20 +74,28 @@ public class Melee : MonoBehaviour
     //Lerping knockack coroutine
     private IEnumerator LerpKnockback(Transform targetTransform, Vector3 origin, float duration)
     {
+        if (targetTransform == null)
+            yield break;
+
         float elapsedTime = 0f;
         Vector3 startPosition = targetTransform.position;
         Vector3 knockbackDirection = (targetTransform.position - origin).normalized;
 
         while (elapsedTime < duration)
         {
+            if (targetTransform == null)
+                yield break;
+
             float t = elapsedTime / duration;
             targetTransform.position = Vector3.Lerp(startPosition, startPosition + knockbackDirection, t);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        targetTransform.position = startPosition + knockbackDirection;
+        if (targetTransform != null)
+            targetTransform.position = startPosition + knockbackDirection;
     }
+
 
     public void OnAttackAnimationFinished()
     {

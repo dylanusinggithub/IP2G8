@@ -19,16 +19,20 @@ public class Ranged : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if (enemy != null)
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(rangedDamage);
             Destroy(gameObject);
+            enemy.hitFlash = true;
         }
 
-        if (collision.gameObject.CompareTag("Enemy2"))
+        FlyingEnemy flyingEnemy = collision.GetComponent<FlyingEnemy>();
+        if (flyingEnemy != null)
         {
-            collision.gameObject.GetComponent<FlyingEnemy>().TakeDamage(rangedDamage);
+            flyingEnemy.gameObject.GetComponent<FlyingEnemy>().TakeDamage(rangedDamage);
             Destroy(gameObject);
+            flyingEnemy.hitFlash = true;
         }
 
         else if (collision.gameObject.CompareTag("Walls"))
