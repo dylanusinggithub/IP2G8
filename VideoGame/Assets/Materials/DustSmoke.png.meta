@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DustSmoke_0: 1884883986799843327
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
