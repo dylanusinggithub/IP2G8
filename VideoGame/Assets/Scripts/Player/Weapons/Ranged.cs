@@ -11,6 +11,9 @@ public class Ranged : MonoBehaviour
     private float rangedDamage;
     public float bulletLife = .75f;
 
+    public GameObject bloodEffectPrefab;
+    public GameObject shurikenDestroyPrefab;
+
     private void Start()
     {
         weaponScript = FindFirstObjectByType<WeaponAim>();
@@ -19,24 +22,32 @@ public class Ranged : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Enemy enemy = collision.GetComponent<Enemy>();
-        if (enemy != null)
+        if (collision.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(rangedDamage);
-            Destroy(gameObject);
-            enemy.hitFlash = true;
+            Enemy enemy = collision.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                collision.gameObject.GetComponent<Enemy>().TakeDamage(rangedDamage);
+                enemy.hitFlash = true;
+                Instantiate(bloodEffectPrefab, enemy.transform.position, Quaternion.identity);
+            }
         }
 
-        FlyingEnemy flyingEnemy = collision.GetComponent<FlyingEnemy>();
-        if (flyingEnemy != null)
+        if (collision.CompareTag("Enemy2"))
         {
-            flyingEnemy.gameObject.GetComponent<FlyingEnemy>().TakeDamage(rangedDamage);
-            Destroy(gameObject);
-            flyingEnemy.hitFlash = true;
+            FlyingEnemy flyingEnemy = collision.GetComponent<FlyingEnemy>();
+            if (flyingEnemy != null)
+            {
+                flyingEnemy.gameObject.GetComponent<FlyingEnemy>().TakeDamage(rangedDamage);
+                Destroy(gameObject);
+                flyingEnemy.hitFlash = true;
+                Instantiate(bloodEffectPrefab, flyingEnemy.transform.position, Quaternion.identity);
+            }
         }
 
         else if (collision.gameObject.CompareTag("Walls"))
         {
+            Instantiate(shurikenDestroyPrefab, this.gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

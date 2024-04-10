@@ -188,3 +188,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletLife: 1
+  bloodEffectPrefab: {fileID: 4142521759512135122, guid: 1feac453f09eb434ba3a24e10a0a62fd, type: 3}
+  shurikenDestroyPrefab: {fileID: 4946652019447001633, guid: 02aa3e3b9b7db754d92e4f33a6adc7d9, type: 3}

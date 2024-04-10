@@ -9,6 +9,7 @@ public class Melee : MonoBehaviour
     private WeaponAim weaponScript;
     private float meleeDamage;
     public float knockbackDuration = 0.2f; //Adjust here on in inspector
+    public GameObject bloodEffectPrefab;
 
     public AudioManager audioManager;
     public string[] hitSoundOptions = { "HitSoundOne", "HitSoundTwo", "HitSoundThree" };
@@ -34,6 +35,9 @@ public class Melee : MonoBehaviour
                 hitEnemies.Add(collision);
                 ApplyKnockbackToEnemy(enemy, transform.position);
 
+                Instantiate(bloodEffectPrefab, enemy.transform.position, Quaternion.identity);
+
+
                 string randomSound = hitSoundOptions[Random.Range(0, hitSoundOptions.Length)];
                 audioManager.PlayAudio(randomSound);
             }
@@ -49,6 +53,9 @@ public class Melee : MonoBehaviour
                 flyingEnemy.hitFlash = true;
                 hitEnemies.Add(collision);
                 ApplyKnockbackToFlyingEnemy(flyingEnemy, transform.position);
+
+                Instantiate(bloodEffectPrefab, flyingEnemy.transform.position, Quaternion.identity);
+
 
                 string randomSound = hitSoundOptions[Random.Range(0, hitSoundOptions.Length)];
                 audioManager.PlayAudio(randomSound);
