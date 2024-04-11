@@ -8,8 +8,11 @@ public class Currency_collection : MonoBehaviour
     private Transform playerTransform;
     public float moveSpeed = 2f;
 
+    public ShopCommonItem commonItem;
+
     void Start()
     {
+        commonItem = GetComponent<ShopCommonItem>();
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }

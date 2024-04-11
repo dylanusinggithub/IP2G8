@@ -67,6 +67,12 @@ public class GameManager : MonoBehaviour
         UpdateGemCountText();
     }
 
+    public void RemoveGems(int amount)
+    {
+        gemCount -= amount;
+        UpdateGemCountText();
+    }
+
     private void UpdateGemCountText()
     {
         gemCountText.text = gemCount.ToString();
