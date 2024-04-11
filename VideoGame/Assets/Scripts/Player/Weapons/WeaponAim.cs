@@ -68,6 +68,11 @@ public class WeaponAim : MonoBehaviour
         {
             Shoot();
         }
+
+        if (room.weaponchange == true) 
+        {
+            mainCam = GameObject.FindGameObjectWithTag("BossCamera").GetComponent<Camera>();
+        }
     }
 
     public void Melee()
