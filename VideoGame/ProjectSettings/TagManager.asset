@@ -12,6 +12,7 @@ TagManager:
   - breakable
   - breakablebarrel
   - Walls
+  - BleedEffect
   layers:
   - Default
   - TransparentFX

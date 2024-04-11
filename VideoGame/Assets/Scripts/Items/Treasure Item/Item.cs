@@ -69,9 +69,11 @@ public class Item : MonoBehaviour
 
                     break;
 
-                case "helmOfBerseker":
+                case "helmOfBerserker":
 
                     //Action
+                    WeaponAim berserkerHelm = FindFirstObjectByType<WeaponAim>();
+                    berserkerHelm.ItemCriticalChanceAdd();
 
                     //Description
                     itemName = "Helm of Berserker";
@@ -80,9 +82,11 @@ public class Item : MonoBehaviour
 
                     break;
 
-                case "swordOfBerserker":
+                case "swordOfBerseker":
 
                     //Action
+                    WeaponAim berserkerSword = FindFirstObjectByType<WeaponAim>();
+                    berserkerSword.ItemCriticalChanceMulti();
 
                     //Description
                     itemName = "Sword of Berserker";

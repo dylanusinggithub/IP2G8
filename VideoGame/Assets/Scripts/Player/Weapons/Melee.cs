@@ -11,6 +11,10 @@ public class Melee : MonoBehaviour
     public float knockbackDuration = 0.2f; //Adjust here on in inspector
     public GameObject bloodEffectPrefab;
 
+    private float baseMeleeDamage;
+    private float criticalChance;
+    private float criticalDamageMultiplier;
+
     public AudioManager audioManager;
     public string[] hitSoundOptions = { "HitSoundOne", "HitSoundTwo", "HitSoundThree" };
 
@@ -20,7 +24,9 @@ public class Melee : MonoBehaviour
     void Start()
     {
         weaponScript = FindFirstObjectByType<WeaponAim>();
-        meleeDamage = weaponScript.meleeDamage;
+        baseMeleeDamage = weaponScript.meleeDamage;
+        criticalChance = weaponScript.criticalChance;
+        criticalDamageMultiplier = weaponScript.criticalDamageMultiplier;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,16 +36,17 @@ public class Melee : MonoBehaviour
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(meleeDamage);
+                float damage = CalculateDamage(baseMeleeDamage);
+
+                enemy.TakeDamage(damage);
                 enemy.hitFlash = true;
                 hitEnemies.Add(collision);
                 ApplyKnockbackToEnemy(enemy, transform.position);
 
                 Instantiate(bloodEffectPrefab, enemy.transform.position, Quaternion.identity);
 
-
-                string randomSound = hitSoundOptions[Random.Range(0, hitSoundOptions.Length)];
-                audioManager.PlayAudio(randomSound);
+                //string randomSound = hitSoundOptions[Random.Range(0, hitSoundOptions.Length)];
+                //audioManager.PlayAudio(randomSound);
             }
             
         }
@@ -49,16 +56,17 @@ public class Melee : MonoBehaviour
             FlyingEnemy flyingEnemy = collision.GetComponent<FlyingEnemy>();
             if (flyingEnemy != null)
             {
-                flyingEnemy.TakeDamage(meleeDamage);
+                float damage = CalculateDamage(baseMeleeDamage);
+
+                flyingEnemy.TakeDamage(damage);
                 flyingEnemy.hitFlash = true;
                 hitEnemies.Add(collision);
                 ApplyKnockbackToFlyingEnemy(flyingEnemy, transform.position);
 
                 Instantiate(bloodEffectPrefab, flyingEnemy.transform.position, Quaternion.identity);
 
-
-                string randomSound = hitSoundOptions[Random.Range(0, hitSoundOptions.Length)];
-                audioManager.PlayAudio(randomSound);
+                //string randomSound = hitSoundOptions[Random.Range(0, hitSoundOptions.Length)];
+                //audioManager.PlayAudio(randomSound);
             }
         }
 
@@ -72,8 +80,26 @@ public class Melee : MonoBehaviour
             collision.GetComponent<breakable_barrel>().Smash();
         }
     }
+    private float CalculateDamage(float baseDamage)
+    {
+        float critChance = criticalChance / 100f;
+        if (Random.Range(0f, 1f) <= critChance)
+        {
+            Debug.Log("Critical Strike!");
+            audioManager.PlayAudio("CriticalHitSound");
+            return baseDamage * criticalDamageMultiplier;
+        }
+        else
+        {
+            audioManager.PlayAudio("RegularHitSound");
+            return baseDamage;
+        }
+    }
 
-    
+
+
+
+
 
     //Ground Enemy Knockback
     private void ApplyKnockbackToEnemy(Enemy enemy, Vector3 origin)

@@ -23,6 +23,10 @@ public class WeaponAim : MonoBehaviour
     public float shootTimer = 0f;
     public bool canShoot = true;
 
+    [Header("Critical Hit Settings")]
+    public float criticalChance = 10f;
+    public float criticalDamageMultiplier = 1.5f;
+
     [Header("Weapon Aim Settings")]
     public SpriteRenderer weaponSpriteRenderer;
     public SpriteRenderer playerSpriteRenderer;
@@ -55,7 +59,6 @@ public class WeaponAim : MonoBehaviour
             AimWeapon();
         }
 
-
         if (Input.GetMouseButtonDown(0) && !isAttacking && canShoot)
         {
             Melee();
@@ -84,7 +87,6 @@ public class WeaponAim : MonoBehaviour
 
     void Shoot()
     {
-        //Set shoot to false, create bullet and play sound
         canShoot = false;
         GameObject intBullet = Instantiate(bullet, Aim.position, Aim.rotation);
         intBullet.GetComponent<Rigidbody2D>().AddForce(-Aim.up * fireForce, ForceMode2D.Impulse);
@@ -169,5 +171,15 @@ public class WeaponAim : MonoBehaviour
     {
         meleeAttackSpeed = (float)(meleeAttackSpeed - 0.125f);
         rangedAttackSpeed = (float)(rangedAttackSpeed - 0.125f);
+    }
+
+    public void ItemCriticalChanceAdd()
+    {
+        criticalChance += 5f;
+    }
+
+    public void ItemCriticalChanceMulti()
+    {
+        criticalDamageMultiplier += 0.5f;
     }
 }
