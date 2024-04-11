@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Material originalMaterial;
     private GameObject frozenParticleInstance;
+    private GameObject keepersParticleInstance;
     private Animator animator;
 
     public bool enemyFrozen = false;
@@ -56,6 +57,11 @@ public class Enemy : MonoBehaviour
         if (spriteRenderer != null)
         {
             originalMaterial = spriteRenderer.material;
+        }
+
+        if(gameManager.keepersTimepiece == true)
+        {
+            StartCoroutine(ApplyKeepersTimepiece());
         }
     }
 
@@ -219,6 +225,31 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    IEnumerator ApplyKeepersTimepiece()
+    {
+        if (gameManager.keepersTimepiece)
+        {
+            float timepieceLength = gameManager.keepersTimepieceLength;
+            Material timepieceMaterial = gameManager.keepersMaterial;
+            GameObject timepieceParticle = gameManager.keepersParticle;
+
+            if (timepieceMaterial != null)
+            {
+                enemyFrozen = true;
+                moveSpeed = 0f;
+                spriteRenderer.material = timepieceMaterial;
+                keepersParticleInstance = Instantiate(timepieceParticle, transform.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timepieceLength);
+
+                enemyFrozen = false;
+                moveSpeed = originalMoveSpeed;
+                spriteRenderer.material = originalMaterial;
+                Destroy(keepersParticleInstance);
+            }
+        }
+    }
+
 
 
     IEnumerator HitFlash()
@@ -240,15 +271,15 @@ public class Enemy : MonoBehaviour
         spriteRenderer.SetPropertyBlock(null);
     }
 
-    void OnGUI()
-    {
-        if (target != null && !isDead)
-        {
-            Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-            screenPosition.y += 40;
-            GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 100, 20), "HP: " + health);
-        }
-    }
+    //void OnGUI()
+    //{
+    //    if (target != null && !isDead)
+    //    {
+    //        Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+    //        screenPosition.y += 40;
+    //        GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 100, 20), "HP: " + health);
+    //    }
+    //}
 
     public void OnCollisionEnter2D(Collision2D collision)
     {

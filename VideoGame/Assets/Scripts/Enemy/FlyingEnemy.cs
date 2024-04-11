@@ -33,7 +33,10 @@ public class FlyingEnemy : MonoBehaviour
     [Header("References")]
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
+    private GameObject frozenParticleInstance;
+    private GameObject keepersParticleInstance;
     private Material originalMaterial;
+    public bool enemyFrozen = false;
 
     public bool isFlipped = false;
 
@@ -54,6 +57,11 @@ public class FlyingEnemy : MonoBehaviour
         if (spriteRenderer != null)
         {
             originalMaterial = spriteRenderer.material;
+        }
+
+        if (gameManager.keepersTimepiece == true)
+        {
+            StartCoroutine(ApplyKeepersTimepiece());
         }
     }
 
@@ -183,27 +191,64 @@ public class FlyingEnemy : MonoBehaviour
 
     IEnumerator ApplyFreeze()
     {
+        if (enemyFrozen)
+            yield break;
+
         float frozenMultiplier = gameManager.frozenMultiplier;
         float reductionAmount = moveSpeed * frozenMultiplier;
 
+        Material frozenMaterial = gameManager.frozenMaterial;
+
         moveSpeed -= reductionAmount;
 
+        GameObject frozenPrefab = gameManager.frozenParticle;
+
+        frozenParticleInstance = Instantiate(frozenPrefab, transform.position, Quaternion.identity, transform);
+
         //Change the material
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Material frozenMaterial = gameManager.frozenMaterial;
         if (spriteRenderer != null && frozenMaterial != null)
         {
             spriteRenderer.material = frozenMaterial;
         }
 
+        enemyFrozen = true;
+
         yield return new WaitForSeconds(3f);
 
         moveSpeed += reductionAmount;
+
+        enemyFrozen = false;
+        Destroy(frozenParticleInstance);
 
         //Revert the material
         if (spriteRenderer != null && originalMaterial != null)
         {
             spriteRenderer.material = originalMaterial;
+        }
+    }
+
+    IEnumerator ApplyKeepersTimepiece()
+    {
+        if (gameManager.keepersTimepiece)
+        {
+            float timepieceLength = gameManager.keepersTimepieceLength;
+            Material timepieceMaterial = gameManager.keepersMaterial;
+            GameObject timepieceParticle = gameManager.keepersParticle;
+
+            if (timepieceMaterial != null)
+            {
+                enemyFrozen = true;
+                moveSpeed = 0f;
+                spriteRenderer.material = timepieceMaterial;
+                keepersParticleInstance = Instantiate(timepieceParticle, transform.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timepieceLength);
+
+                enemyFrozen = false;
+                moveSpeed = originalMoveSpeed;
+                spriteRenderer.material = originalMaterial;
+                Destroy(keepersParticleInstance);
+            }
         }
     }
 
@@ -226,13 +271,13 @@ public class FlyingEnemy : MonoBehaviour
         spriteRenderer.SetPropertyBlock(null);
     }
 
-    void OnGUI()
-    {
-        if (target != null && !isDead)
-        {
-            Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-            screenPosition.y += 40;
-            GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 100, 20), "HP: " + health);
-        }
-    }
+    //void OnGUI()
+    //{
+    //    if (target != null && !isDead)
+    //    {
+    //        Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+    //        screenPosition.y += 40;
+    //        GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 100, 20), "HP: " + health);
+    //    }
+    //}
 }

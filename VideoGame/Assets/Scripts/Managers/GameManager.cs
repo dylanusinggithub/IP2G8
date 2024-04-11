@@ -15,10 +15,18 @@ public class GameManager : MonoBehaviour
     public GameObject itemChooserPrefab;
 
    [Header("Player Statuses")]
+
+   [Header("Frozen Sphere")]
     public bool frozenSphere = false;
     public float frozenMultiplier = 0.150f;
     public Material frozenMaterial;
     public GameObject frozenParticle;
+
+    [Header("Keeeper's Timepiece")]
+    public bool keepersTimepiece = false;
+    public float keepersTimepieceLength = 1f;
+    public Material keepersMaterial;
+    public GameObject keepersParticle;
 
     [Header("Material References")]
     public Material hitFlashMaterial;
@@ -72,6 +80,19 @@ public class GameManager : MonoBehaviour
         if(frozenSphere)
         {
             frozenMultiplier = (float)(frozenMultiplier * 1.3);
+        }
+    }
+
+    public void ItemKeepersTimepieceActive()
+    {
+        if (keepersTimepiece == false)
+        {
+            keepersTimepiece = true;
+        }
+
+        if (keepersTimepiece)
+        {
+            keepersTimepieceLength = (float)(keepersTimepieceLength + 0.25f);
         }
     }
 

@@ -120,6 +120,8 @@ public class Item : MonoBehaviour
                 case "fleetingQuiver":
 
                     //Boots Action
+                    WeaponAim quiver = FindFirstObjectByType<WeaponAim>();
+                    quiver.ItemAttackSpeedIncrease();
 
                     //Boots Description
                     itemName = "Fleeting Quiver";
@@ -171,6 +173,8 @@ public class Item : MonoBehaviour
                 case "keepersTimepiece":
                     
                     //Action
+                    GameManager keepersTimepiece = FindFirstObjectByType<GameManager>();
+                    keepersTimepiece.ItemKeepersTimepieceActive();
 
                     //Description
                     itemName = "Keepers Timepiece";

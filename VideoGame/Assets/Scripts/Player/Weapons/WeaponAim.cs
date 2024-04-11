@@ -8,7 +8,7 @@ public class WeaponAim : MonoBehaviour
     [Header("Melee Settings")]
     public GameObject meleeSlash;
     public float meleeDamage = 2.5f;
-    public float meleeAttackSpeed = 0.25f;
+    public float meleeAttackSpeed = 0.5f;
     public float meleeTimer = 0f;
     public bool isAttacking = false;
     public float knockbackForce = 6f;
@@ -19,7 +19,7 @@ public class WeaponAim : MonoBehaviour
     public GameObject bullet;
     public float rangedDamage = 2.5f;
     public float fireForce = 10f;
-    public float rangedAttackSpeed = 0.25f;
+    public float rangedAttackSpeed = 1f;
     public float shootTimer = 0f;
     public bool canShoot = true;
 
@@ -163,5 +163,11 @@ public class WeaponAim : MonoBehaviour
         //Increase damage from item pick ups
         meleeDamage = (float)(meleeDamage * 1.3);
         rangedDamage = (float)(meleeDamage * 1.3);
+    }
+
+    public void ItemAttackSpeedIncrease()
+    {
+        meleeAttackSpeed = (float)(meleeAttackSpeed - 0.125f);
+        rangedAttackSpeed = (float)(rangedAttackSpeed - 0.125f);
     }
 }
