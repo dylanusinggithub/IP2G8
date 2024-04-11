@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class RoomTransition : MonoBehaviour
 {
-    CameraController cam;
+    public CameraController cam;
 
-    public Vector2 cameraChange;
+    public Vector3 cameraChange;
     public Vector3 playerChange;
 
-    void Start()
-    {
-        cam = Camera.main.GetComponent<CameraController>();
-    }
     void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.CompareTag("Player"))
         {
-            //moves camera
-            cam.minPos += cameraChange;
-            cam.maxPos += cameraChange;
+            if (cam != null)
+            {
+                // Moves camera target
+                cam.target.position += cameraChange;
 
-            // player offset
-            other.transform.position += playerChange;
+                // Player offset
+                other.transform.position += playerChange;
+            }
+            else
+            {
+                Debug.LogError("CameraController not assigned to RoomTransition!");
+            }
         }
     }
 }

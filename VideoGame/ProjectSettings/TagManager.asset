@@ -13,6 +13,7 @@ TagManager:
   - breakablebarrel
   - Walls
   - BleedEffect
+  - PlayerCamera
   layers:
   - Default
   - TransparentFX

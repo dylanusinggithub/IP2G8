@@ -41,11 +41,4 @@ public class CameraSwap : MonoBehaviour
             obj.SetActive(true);
         }
     }
-
-    
-
-
-
-
-
 }

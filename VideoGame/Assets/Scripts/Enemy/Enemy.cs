@@ -335,15 +335,8 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            audioPlayer.Play();
-
+            //
         }
-
-
-
     }
-
-
-
 
 }
