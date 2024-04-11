@@ -186,6 +186,8 @@ public class Item : MonoBehaviour
                 case "barbedDagger":
 
                     //Action
+                    GameManager barbedDagger = FindFirstObjectByType<GameManager>();
+                    barbedDagger.ItemBleedActive();
 
                     //Description
                     itemName = "Barbed Dagger";

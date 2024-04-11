@@ -92,6 +92,7 @@ public class FlyingEnemy : MonoBehaviour
         }
 
         LookAtPlayer();
+        isAlive();
         agent.speed = moveSpeed;
     }
 
@@ -169,13 +170,23 @@ public class FlyingEnemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         bool isFrozen = gameManager.frozenSphere;
+        bool isBleed = gameManager.bleed;
+
         if (isFrozen)
         {
             StartCoroutine(ApplyFreeze());
         }
 
-        health -= damage;
+        if (isBleed)
+        {
+            StartCoroutine(ApplyBleed());
+        }
 
+        health -= damage;
+    }
+
+    public void isAlive()
+    {
         if (health <= 0)
         {
             isDead = true;
@@ -185,6 +196,12 @@ public class FlyingEnemy : MonoBehaviour
             if (Random.value * 100 <= dropChance)
             {
                 SpawnDrop(enemyDrop);
+            }
+
+            GameObject[] bleedEffects = GameObject.FindGameObjectsWithTag("BleedEffect");
+            foreach (GameObject obj in bleedEffects)
+            {
+                Destroy(obj);
             }
         }
     }
@@ -252,6 +269,38 @@ public class FlyingEnemy : MonoBehaviour
         }
     }
 
+    IEnumerator ApplyBleed()
+    {
+        if (gameManager.bleed)
+        {
+            float bleedDuration = gameManager.bleedTicks;
+            float bleedDamageAmount = gameManager.bleedDamage;
+            Material bleedMaterial = gameManager.bleedMaterial;
+            GameObject bleedParticle = gameManager.bleedParticle;
+            GameObject bleedParticleInstance = null;
+
+            if (bleedMaterial != null && bleedParticle != null)
+            {
+                for (int i = 0; i < bleedDuration; i++)
+                {
+                    health -= bleedDamageAmount;
+
+                    bleedParticleInstance = Instantiate(bleedParticle, transform.position, Quaternion.identity);
+                    spriteRenderer.material = bleedMaterial;
+                    yield return new WaitForSeconds(0.5f);
+
+                    spriteRenderer.material = originalMaterial;
+                    if (health <= 0)
+                    {
+                        break;
+                    }
+                    Destroy(bleedParticleInstance);
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
+        }
+    }
+
     IEnumerator HitFlash()
     {
         Material hitFlashMaterial = gameManager.hitFlashMaterial;
@@ -271,13 +320,13 @@ public class FlyingEnemy : MonoBehaviour
         spriteRenderer.SetPropertyBlock(null);
     }
 
-    //void OnGUI()
-    //{
-    //    if (target != null && !isDead)
-    //    {
-    //        Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-    //        screenPosition.y += 40;
-    //        GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 100, 20), "HP: " + health);
-    //    }
-    //}
+    void OnGUI()
+    {
+        if (target != null && !isDead)
+        {
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+            screenPosition.y += 40;
+            GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 100, 20), "HP: " + health);
+        }
+    }
 }

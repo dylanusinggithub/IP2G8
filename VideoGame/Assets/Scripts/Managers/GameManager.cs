@@ -28,6 +28,13 @@ public class GameManager : MonoBehaviour
     public Material keepersMaterial;
     public GameObject keepersParticle;
 
+    [Header("Barbed Dagger")]
+    public bool bleed = false;
+    public int bleedTicks = 3;
+    public float bleedDamage = 1f;
+    public Material bleedMaterial;
+    public GameObject bleedParticle;
+
     [Header("Material References")]
     public Material hitFlashMaterial;
 
@@ -72,29 +79,41 @@ public class GameManager : MonoBehaviour
 
     public void ItemFrozenActive()
     {
-        if (frozenSphere == false)
+        if (!frozenSphere)
         {
             frozenSphere = true;
         }
-
-        if(frozenSphere)
+        else if (frozenSphere)
         {
-            frozenMultiplier = (float)(frozenMultiplier * 1.3);
+            frozenMultiplier *= 1.3f;
         }
     }
 
     public void ItemKeepersTimepieceActive()
     {
-        if (keepersTimepiece == false)
+        if (!keepersTimepiece)
         {
             keepersTimepiece = true;
         }
-
-        if (keepersTimepiece)
+        else if (keepersTimepiece)
         {
-            keepersTimepieceLength = (float)(keepersTimepieceLength + 0.25f);
+            keepersTimepieceLength += 0.25f;
         }
     }
+
+    public void ItemBleedActive()
+    {
+        if (!bleed)
+        {
+            bleed = true;
+        }
+        else if (bleed)
+        {
+            bleedTicks += 1;
+            bleedDamage += 0.5f;
+        }
+    }
+
 
     public void SpawnItemChoosers()
     {
