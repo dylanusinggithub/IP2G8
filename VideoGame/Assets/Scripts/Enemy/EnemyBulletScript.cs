@@ -9,7 +9,11 @@ public class EnemyBulletScript : MonoBehaviour
     public float force;
     private float timer;
 
+    public AudioSource audioPlayer;
+
     public int damage = 1;
+    public GameObject destructionEffect; // Particle effect prefab
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +32,9 @@ public class EnemyBulletScript : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer > 10)
+        if (timer > 10)
         {
-            Destroy(gameObject);
+            DestroyBullet();
         }
     }
 
@@ -45,11 +49,31 @@ public class EnemyBulletScript : MonoBehaviour
                 player.TakeDamage(damage);
                 player.GetComponent<PlayerControls>().hitFlash = true;
             }
-                Destroy(gameObject);
+            DestroyBullet();
         }
         else if (other.gameObject.CompareTag("Walls"))
         {
-            Destroy(gameObject);
+            DestroyBullet();
         }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            audioPlayer.Play();
+        }
+    }
+
+    void DestroyBullet()
+    {
+        // Instantiate destruction effect
+        if (destructionEffect != null)
+        {
+            Instantiate(destructionEffect, transform.position, Quaternion.identity);
+        }
+
+        // Destroy bullet object
+        Destroy(gameObject);
     }
 }

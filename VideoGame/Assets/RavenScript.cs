@@ -22,6 +22,11 @@ public class RavenScript : MonoBehaviour
 
     private PlayerControls playerControls;
 
+    private AudioSource audioSource; // New AudioSource component
+
+    public AudioClip dialogueStartSound; // Sound to play when dialogue starts
+    public AudioClip dialogueEndSound; // Sound to play when dialogue ends
+
     void Start()
     {
         dialogueText.gameObject.SetActive(false);
@@ -32,6 +37,11 @@ public class RavenScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
+
+        // Add AudioSource component and configure it
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
     }
 
     void Update()
@@ -52,8 +62,6 @@ public class RavenScript : MonoBehaviour
             }
             interactPrompt.SetActive(false);
         }
-
-
     }
 
     void StartDialogue()
@@ -62,6 +70,15 @@ public class RavenScript : MonoBehaviour
         dialogueText.gameObject.SetActive(true);
         interactPrompt.SetActive(false);
         currentLine = 0;
+
+        // Play sound when dialogue starts
+        if (dialogueStartSound != null)
+        {
+            audioSource.clip = dialogueStartSound;
+            audioSource.loop = true; // Loop the audio during dialogue
+            audioSource.Play();
+        }
+
         StartCoroutine(PrintDialogue(dialogueLines[currentLine]));
     }
 
@@ -79,25 +96,39 @@ public class RavenScript : MonoBehaviour
             }
         }
 
-        if (currentLine < dialogueLines.Length - 1) 
+        if (currentLine < dialogueLines.Length - 1)
         {
-            dialogueText.text = text; 
+            dialogueText.text = text;
             currentLine++;
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
             StartCoroutine(PrintDialogue(dialogueLines[currentLine]));
         }
         else
         {
-            dialogueText.text = text; 
+            dialogueText.text = text;
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
             EndDialogue();
         }
     }
 
-
     void EndDialogue()
     {
         dialogueActive = false;
         dialogueText.gameObject.SetActive(false);
+
+        // Stop sound when dialogue ends
+        if (dialogueEndSound != null)
+        {
+            audioSource.clip = dialogueEndSound;
+            audioSource.loop = false; // Turn off loop when dialogue ends
+            audioSource.Play();
+            StartCoroutine(StopAudioAfterDelay(dialogueEndSound.length));
+        }
+    }
+
+    IEnumerator StopAudioAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        audioSource.Stop();
     }
 }

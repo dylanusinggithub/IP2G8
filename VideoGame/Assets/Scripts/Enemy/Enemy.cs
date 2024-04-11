@@ -37,6 +37,8 @@ public class Enemy : MonoBehaviour
     public bool enemyFrozen = false;
     public bool isFlipped = false;
 
+    public AudioSource audioPlayer;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -247,4 +249,20 @@ public class Enemy : MonoBehaviour
             GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 100, 20), "HP: " + health);
         }
     }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            audioPlayer.Play();
+
+        }
+
+
+
+    }
+
+
+
+
 }

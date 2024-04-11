@@ -1,2 +1,12 @@
 fileFormatVersion: 2
 guid: 575bbc80ab15f3542a5e17a571d7e6db
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - breakSound: {fileID: 8300000, guid: 5ecc488ebda4e6c408c1783a405495a3, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

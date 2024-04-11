@@ -23,10 +23,17 @@ public class HealthSystem : MonoBehaviour
     private List<GameObject> heartObjects = new List<GameObject>();
     private GameObject shieldObject;
 
+    public AudioClip damageSound; 
+    public AudioSource audioSource; 
+
     void Start()
     {
         currentHealth = maxHealth;
         InitializeHearts();
+
+        // Add AudioSource component
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     void Update()
@@ -62,6 +69,12 @@ public class HealthSystem : MonoBehaviour
             currentHealth = 0;
 
         UpdateHeartsUI();
+
+        // Play damage sound
+        if (damageSound != null)
+        {
+            audioSource.PlayOneShot(damageSound);
+        }
     }
 
     public void Heal(int amount)
