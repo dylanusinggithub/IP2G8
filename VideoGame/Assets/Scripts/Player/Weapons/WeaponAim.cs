@@ -182,4 +182,15 @@ public class WeaponAim : MonoBehaviour
     {
         criticalDamageMultiplier += 0.5f;
     }
+
+    public void ItemDivineBlade()
+    {
+        meleeDamage = (float)(meleeDamage * 1.3);
+        rangedDamage = (float)(meleeDamage * 1.3);
+
+        meleeAttackSpeed = (float)(meleeAttackSpeed - 0.125f);
+        rangedAttackSpeed = (float)(rangedAttackSpeed - 0.125f);
+
+        criticalChance += 5f;
+    }
 }

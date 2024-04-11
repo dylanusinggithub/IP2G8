@@ -229,6 +229,8 @@ public class Item : MonoBehaviour
                 case "divineBlade":
 
                     //Action
+                    WeaponAim divineBlade = FindFirstObjectByType<WeaponAim>();
+                    divineBlade.ItemDivineBlade();
 
                     //Description
                     itemName = "Divine Blade";

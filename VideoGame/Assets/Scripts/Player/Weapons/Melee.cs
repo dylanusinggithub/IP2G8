@@ -36,6 +36,7 @@ public class Melee : MonoBehaviour
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
+                baseMeleeDamage = weaponScript.meleeDamage;
                 float damage = CalculateDamage(baseMeleeDamage);
 
                 enemy.TakeDamage(damage);
@@ -56,6 +57,7 @@ public class Melee : MonoBehaviour
             FlyingEnemy flyingEnemy = collision.GetComponent<FlyingEnemy>();
             if (flyingEnemy != null)
             {
+                baseMeleeDamage = weaponScript.meleeDamage;
                 float damage = CalculateDamage(baseMeleeDamage);
 
                 flyingEnemy.TakeDamage(damage);
@@ -83,23 +85,19 @@ public class Melee : MonoBehaviour
     private float CalculateDamage(float baseDamage)
     {
         float critChance = criticalChance / 100f;
+        float damage = baseDamage;
         if (Random.Range(0f, 1f) <= critChance)
         {
             Debug.Log("Critical Strike!");
             audioManager.PlayAudio("CriticalHitSound");
-            return baseDamage * criticalDamageMultiplier;
+            damage *= criticalDamageMultiplier;
         }
         else
         {
             audioManager.PlayAudio("RegularHitSound");
-            return baseDamage;
         }
+        return damage;
     }
-
-
-
-
-
 
     //Ground Enemy Knockback
     private void ApplyKnockbackToEnemy(Enemy enemy, Vector3 origin)
