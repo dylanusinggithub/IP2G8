@@ -23,7 +23,9 @@ public class HealthSystem : MonoBehaviour
     private List<GameObject> heartObjects = new List<GameObject>();
     private GameObject shieldObject;
 
-    public AudioClip damageSound; 
+    public AudioClip damageSound;
+    public AudioClip healSound;
+
     public AudioSource audioSource; 
 
     void Start()
@@ -83,6 +85,7 @@ public class HealthSystem : MonoBehaviour
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
 
+        audioSource.PlayOneShot(healSound);
         UpdateHeartsUI();
     }
 

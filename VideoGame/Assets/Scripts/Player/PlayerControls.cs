@@ -22,6 +22,11 @@ public class PlayerControls : MonoBehaviour
 
     private bool inDialouge = false;
 
+    public AudioManager audioManager;
+    public float stepCooldown = 0.5f;
+
+    bool canPlayStep = true;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -50,6 +55,18 @@ public class PlayerControls : MonoBehaviour
             StartCoroutine(HitFlash());
         }
 
+        if (movement.magnitude > 0 && canPlayStep)
+        {
+            StartCoroutine(PlayFootstep());
+        }
+    }
+
+    IEnumerator PlayFootstep()
+    {
+            audioManager.PlayAudio("GrassWalk");
+            canPlayStep = false;
+            yield return new WaitForSeconds(stepCooldown);
+            canPlayStep = true;
     }
 
     void FixedUpdate()

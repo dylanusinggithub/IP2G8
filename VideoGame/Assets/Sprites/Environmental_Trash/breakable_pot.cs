@@ -7,10 +7,12 @@ using UnityEngine;
 public class breakable_pot : MonoBehaviour
 {
     private Animator anim;
+    private AudioManager audioManager;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        audioManager = FindFirstObjectByType<AudioManager>();
     }
     void Update()
     {
@@ -20,6 +22,7 @@ public class breakable_pot : MonoBehaviour
     public void Smash()
     {
         anim.SetBool("smashed", true);
+        audioManager.PlayAudio("PotSmash");
         StartCoroutine(breakCo());
     }
 

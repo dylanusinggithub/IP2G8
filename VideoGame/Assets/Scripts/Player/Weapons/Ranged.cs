@@ -45,9 +45,23 @@ public class Ranged : MonoBehaviour
             }
         }
 
+        if (collision.CompareTag("breakable"))
+        {
+            collision.GetComponent<breakable_pot>().Smash();
+            Instantiate(shurikenDestroyPrefab, gameObject.transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+
+        if (collision.CompareTag("breakablebarrel"))
+        {
+            collision.GetComponent<breakable_barrel>().Smash();
+            Instantiate(shurikenDestroyPrefab, gameObject.transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+
         else if (collision.gameObject.CompareTag("Walls"))
         {
-            Instantiate(shurikenDestroyPrefab, this.gameObject.transform.position, Quaternion.identity);
+            Instantiate(shurikenDestroyPrefab, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

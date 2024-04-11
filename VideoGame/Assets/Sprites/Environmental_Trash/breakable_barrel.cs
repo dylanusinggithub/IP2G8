@@ -5,10 +5,12 @@ using UnityEngine;
 public class breakable_barrel : MonoBehaviour
 {
     private Animator anim;
+    private AudioManager audioManager;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        audioManager = FindFirstObjectByType<AudioManager>();
     }
     void Update()
     {
@@ -18,6 +20,7 @@ public class breakable_barrel : MonoBehaviour
     public void Smash()
     {
         anim.SetBool("smashed", true);
+        audioManager.PlayAudio("BarrelBreak");
         StartCoroutine(breakCo());
     }
 

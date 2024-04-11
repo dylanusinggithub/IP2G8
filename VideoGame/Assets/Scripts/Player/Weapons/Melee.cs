@@ -61,7 +61,16 @@ public class Melee : MonoBehaviour
                 audioManager.PlayAudio(randomSound);
             }
         }
-        
+
+        if (collision.CompareTag("breakable"))
+        {
+            collision.GetComponent<breakable_pot>().Smash();
+        }
+
+        if (collision.CompareTag("breakablebarrel"))
+        {
+            collision.GetComponent<breakable_barrel>().Smash();
+        }
     }
 
     
