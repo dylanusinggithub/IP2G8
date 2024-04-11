@@ -166,10 +166,12 @@ public class Item : MonoBehaviour
                 case "teatheredHearts":
 
                     //Action
+                    GameManager teatheredHearts = FindFirstObjectByType<GameManager>();
+                    teatheredHearts.ItemTeatheredHearts();
 
                     //Description
                     itemName = "Teathered Hearts";
-                    description = "Your Consuamble's Drop Hearts!";
+                    description = "You have a chance to not be hurt by enemy attacks";
                     rarity = "rare";
 
                     break;

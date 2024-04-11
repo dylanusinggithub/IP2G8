@@ -35,6 +35,13 @@ public class GameManager : MonoBehaviour
     public Material bleedMaterial;
     public GameObject bleedParticle;
 
+
+    [Header("Teathered Hearts")]
+    public bool teatheredHearts = false;
+    public float teatheredHeartsChance = 15f;
+    public GameObject teatheredHeartParticle;
+    public Material teatheredHeartsMaterial;
+
     [Header("Material References")]
     public Material hitFlashMaterial;
 
@@ -92,6 +99,18 @@ public class GameManager : MonoBehaviour
         else if (frozenSphere)
         {
             frozenMultiplier *= 1.3f;
+        }
+    }
+
+    public void ItemTeatheredHearts()
+    {
+        if (!teatheredHearts)
+        {
+            teatheredHearts = true;
+        }
+        else if (teatheredHearts)
+        {
+            teatheredHeartsChance += 10f;
         }
     }
 

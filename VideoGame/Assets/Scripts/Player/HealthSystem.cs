@@ -23,6 +23,9 @@ public class HealthSystem : MonoBehaviour
     private List<GameObject> heartObjects = new List<GameObject>();
     private GameObject shieldObject;
 
+    public PlayerControls playerControls;
+    public GameManager gameManager;
+
     public AudioClip damageSound;
     public AudioClip healSound;
 
@@ -36,6 +39,9 @@ public class HealthSystem : MonoBehaviour
         // Add AudioSource component
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
+
+        playerControls = GetComponent<PlayerControls>();
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
     void Update()
@@ -59,6 +65,15 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (gameManager.teatheredHearts)
+        {
+            float heartChance = Random.Range(0f, 100f);
+            if (heartChance <= gameManager.teatheredHeartsChance)
+            {
+                playerControls.TeatheredFlashStart();
+                return;
+            }
+        }
         if (hasShield)
         {
             hasShield = false;
@@ -72,12 +87,12 @@ public class HealthSystem : MonoBehaviour
 
         UpdateHeartsUI();
 
-        // Play damage sound
         if (damageSound != null)
         {
             audioSource.PlayOneShot(damageSound);
         }
     }
+
 
     public void Heal(int amount)
     {

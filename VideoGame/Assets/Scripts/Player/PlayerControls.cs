@@ -25,12 +25,20 @@ public class PlayerControls : MonoBehaviour
     public AudioManager audioManager;
     public float stepCooldown = 0.5f;
 
+    private Material originalMaterial;
+
     bool canPlayStep = true;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
+        //Store the original material
+        if (spriteRenderer != null)
+        {
+            originalMaterial = spriteRenderer.material;
+        }
     }
 
     void Update()
@@ -98,6 +106,34 @@ public class PlayerControls : MonoBehaviour
 
         // Reset material property block to original material
         spriteRenderer.SetPropertyBlock(null);
+    }
+
+    public void TeatheredFlashStart()
+    {
+        StartCoroutine (TeatheredFlash());
+    }
+
+     IEnumerator TeatheredFlash()
+    {
+        Material teatheredMaterial = gameManager.teatheredHeartsMaterial;
+        GameObject teatheredParticle = gameManager.teatheredHeartParticle;
+        GameObject teatheredInstance = null;
+
+        if (teatheredMaterial != null)
+        {
+            spriteRenderer.material = teatheredMaterial;
+            teatheredInstance = Instantiate(teatheredParticle, transform.position, Quaternion.identity);
+
+            yield return new WaitForSeconds(1f);
+
+            //Revert the material
+            if (spriteRenderer != null && originalMaterial != null)
+            {
+                spriteRenderer.material = originalMaterial;
+            }
+
+            Destroy(teatheredInstance);
+        }
     }
 
     //Item Functions
