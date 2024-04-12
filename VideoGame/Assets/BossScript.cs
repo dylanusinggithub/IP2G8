@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossController : MonoBehaviour
@@ -20,6 +21,15 @@ public class BossController : MonoBehaviour
     public float delayBetweenSeeds = 0.6f;
     public float horizontalRowOffset = 0.5f;
 
+    [Header("Leaf Storm Attack")]
+    public GameObject warningAreaPrefab;
+    public int numberOfWarningAreas = 3;
+    public float delayBetweenStorms = 1f;
+    public float leafStormWidth = 41.53f;
+    public float leafStormHeight = 13.94f;
+    public float leafStormYOffset = -10.69f;
+    public float minSpawnDistance = 5f;
+    private List<Vector3> spawnedPositions = new List<Vector3>();
 
     public enum BossState
     {
@@ -72,12 +82,13 @@ public class BossController : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
+                StartCoroutine(LeafStormCoroutine());
                 ForceState(BossState.LeafStorm);
-            }
+        }
             else if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-            StartCoroutine(SpawnBossSeedCoroutine());
-            ForceState(BossState.SeedShot);
+                StartCoroutine(SpawnBossSeedCoroutine());
+                ForceState(BossState.SeedShot);
             }
     }
 
@@ -151,17 +162,71 @@ public class BossController : MonoBehaviour
     private Vector3 CalculateSpawnPosition(float offset)
     {
         Vector3 bossPosition = transform.position;
-
         float bossHeight = GetComponent<SpriteRenderer>().bounds.size.y;
-
         Vector3 spawnPosition = new Vector3(bossPosition.x + offset, bossPosition.y - (bossHeight / 2), bossPosition.z);
-
         return spawnPosition;
     }
-
 
     private void SpawnBossSeed(Vector3 position)
     {
         Instantiate(bossSeedPrefab, position, Quaternion.identity);
+    }
+
+    //Leaf Storm Attack
+    private IEnumerator LeafStormCoroutine()
+    {
+        spawnedPositions.Clear();
+        int seed = Random.Range(0, int.MaxValue); 
+        Random.InitState(seed); 
+
+        for (int i = 0; i < numberOfWarningAreas; i++)
+        {
+            Vector3 randomPosition = GetRandomPositionInBounds();
+            while (IsTooCloseToSpawnedPosition(randomPosition))
+            {
+                Random.InitState(++seed);
+                randomPosition = GetRandomPositionInBounds();
+            }
+            spawnedPositions.Add(randomPosition); 
+            SpawnWarningArea(randomPosition);
+            yield return new WaitForSeconds(delayBetweenStorms);
+        }
+    }
+
+    private bool IsTooCloseToSpawnedPosition(Vector3 newPosition)
+    {
+        foreach (Vector3 position in spawnedPositions)
+        {
+            if (Vector3.Distance(newPosition, position) < minSpawnDistance)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Vector3 GetRandomPositionInBounds()
+    {
+        Vector3 center = transform.position;
+        float minX = center.x - leafStormWidth / 2f + 1.5f;
+        float maxX = center.x + leafStormWidth / 2f - 1.5f;
+        float minY = center.y - leafStormHeight / 2f + leafStormYOffset + 1f;
+        float maxY = center.y + leafStormHeight / 2f + leafStormYOffset - 1f;
+
+        float randomX = Random.Range(minX, maxX);
+        float randomY = Random.Range(minY, maxY);
+        return new Vector3(randomX, randomY, center.z);
+    }
+
+    private void SpawnWarningArea(Vector3 position)
+    {
+        Instantiate(warningAreaPrefab, position, Quaternion.identity);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Vector3 center = transform.position;
+        Gizmos.DrawWireCube(center + new Vector3(0f, leafStormYOffset, 0f), new Vector3(leafStormWidth, leafStormHeight, 0f));
     }
 }
