@@ -23,6 +23,8 @@ public class HealthSystem : MonoBehaviour
     private List<GameObject> heartObjects = new List<GameObject>();
     private GameObject shieldObject;
 
+    public GameObject gameOverScreen;
+
     public PlayerControls playerControls;
     public GameManager gameManager;
 
@@ -50,7 +52,7 @@ public class HealthSystem : MonoBehaviour
         if (currentHealth <= 0 && !isDead)
         {
             isDead = true;
-            Destroy(gameObject);
+            gameOverScreen.SetActive(true);
         }
     }
 
