@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8204075198733858782}
   - component: {fileID: 1184976178910344460}
   - component: {fileID: 6334845431199963199}
+  - component: {fileID: 6495750984587700976}
   m_Layer: 0
   m_Name: bramble
   m_TagString: Untagged
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2038771645
-  m_SortingLayer: 10
+  m_SortingLayerID: -930310291
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -2444511460496913448, guid: 4365bcde4cb08e54d968c858cb14d786, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,6 +125,22 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.96987635}
   m_Radius: 3.6451235
+--- !u!114 &6495750984587700976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460416768895796232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &3336307599687965317
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,8 +213,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1811388141
-  m_SortingLayer: 5
+  m_SortingLayerID: -1769023851
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0.3529412}

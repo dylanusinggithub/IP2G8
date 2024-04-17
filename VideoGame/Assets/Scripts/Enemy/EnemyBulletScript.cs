@@ -9,7 +9,7 @@ public class EnemyBulletScript : MonoBehaviour
     public float force;
     private float timer;
 
-    public AudioSource audioPlayer;
+    private AudioManager audioManager;
 
     public int damage = 1;
     public GameObject destructionEffect; // Particle effect prefab
@@ -19,6 +19,8 @@ public class EnemyBulletScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+
+        audioManager = FindFirstObjectByType<AudioManager>();
 
         Vector3 direction = player.transform.position - rb.transform.position;
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
@@ -61,7 +63,7 @@ public class EnemyBulletScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            audioPlayer.Play();
+            audioManager.PlayAudio("EnemyShoot");
         }
     }
 

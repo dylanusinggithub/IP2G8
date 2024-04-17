@@ -36,10 +36,10 @@ public class ItemChooser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnRandomItem();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    SpawnRandomItem();
+        //}
     }
 
     public void SpawnRandomItem()

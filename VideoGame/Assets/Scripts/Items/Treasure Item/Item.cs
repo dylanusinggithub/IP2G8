@@ -197,6 +197,19 @@ public class Item : MonoBehaviour
 
                     break;
 
+                //case "cosmicCompass":
+
+                //    //Action
+
+                //    //Description
+                //    itemName = "Cosmic Compass";
+                //    description = "Unveils the the whole floor";
+                //    rarity = "rare";
+
+                //    break;
+
+                //Epic Items
+
                 case "barbedDagger":
 
                     //Action
@@ -206,33 +219,20 @@ public class Item : MonoBehaviour
                     //Description
                     itemName = "Barbed Dagger";
                     description = "Your Attacks Do Bleed Damage";
-                    rarity = "rare";
+                    rarity = "Epic";
 
                     break;
 
-                //Epic Items
+                //case "amuletOfAscendance":
 
-                case "cosmicCompass":
+                //    //Action
 
-                    //Action
+                //    //Description
+                //    itemName = "Amulet of Ascendance";
+                //    description = "+2 To All Base Stats";
+                //    rarity = "epic";
 
-                    //Description
-                    itemName = "Cosmic Compass";
-                    description = "Unveils the the whole floor";
-                    rarity = "epic";
-
-                    break;
-
-                case "amuletOfAscendance":
-
-                    //Action
-
-                    //Description
-                    itemName = "Amulet of Ascendance";
-                    description = "+2 To All Base Stats";
-                    rarity = "epic";
-
-                    break;
+                //    break;
 
                 //Legendary Items
 
