@@ -5,6 +5,7 @@ using UnityEngine;
 public class Currency_collection : MonoBehaviour
 {
     private GameManager gameManager;
+    private AudioManager audioManager;
     private Transform playerTransform;
     public float moveSpeed = 2f;
 
@@ -14,6 +15,7 @@ public class Currency_collection : MonoBehaviour
     {
         commonItem = GetComponent<ShopCommonItem>();
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioManager>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -30,6 +32,7 @@ public class Currency_collection : MonoBehaviour
         {
             gameManager.AddGems(1);
             Destroy(gameObject);
+            audioManager.PlayAudio("GemPickup");
             //    audioSource.Play();
         }
     }

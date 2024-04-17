@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bossrockbranch_0: 4673906316510425109
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

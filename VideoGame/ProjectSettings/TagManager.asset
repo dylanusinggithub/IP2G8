@@ -16,6 +16,7 @@ TagManager:
   - PlayerCamera
   - LeafStorm
   - Boss
+  - AudioController
   layers:
   - Default
   - TransparentFX
