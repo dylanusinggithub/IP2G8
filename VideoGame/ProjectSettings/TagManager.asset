@@ -15,6 +15,7 @@ TagManager:
   - BleedEffect
   - PlayerCamera
   - LeafStorm
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class BossController : MonoBehaviour
+public class BossScript : MonoBehaviour
 {
     public float minInterval = 2f;
     public float maxInterval = 5f;
@@ -12,6 +13,12 @@ public class BossController : MonoBehaviour
     private float timer = 0f;
     private float cooldownTimer = 0f;
     private bool isOnCooldown = false;
+
+    [Header("Root Erupt Attack")]
+    public GameObject[] rootEruptObjects;
+    public int numberOfRootEruptAttacks = 3;
+    public float rootEruptAttackInterval = 5f;
+    public float timeBeforeReset = 3f;
 
     [Header("Seed Shot Attack")]
     public GameObject bossSeedPrefab;
@@ -31,6 +38,13 @@ public class BossController : MonoBehaviour
     public float minSpawnDistance = 5f;
     private List<Vector3> spawnedPositions = new List<Vector3>();
 
+    [Header("Boss Health")]
+    public float bossHealth;
+    public float maxHealth = 100f;
+    public Image healthBar;
+    private bool hasTakenDamage = false;
+    public GameObject objectToEnableOnDamage;
+
     public enum BossState
     {
         Idle,
@@ -47,6 +61,8 @@ public class BossController : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentState = BossState.Idle;
+        bossHealth = maxHealth;
+        objectToEnableOnDamage.SetActive(false);
     }
 
     private void Update()
@@ -78,18 +94,25 @@ public class BossController : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
+                StartCoroutine(RootEruptCoroutine());
                 ForceState(BossState.RootErupt);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 StartCoroutine(LeafStormCoroutine());
                 ForceState(BossState.LeafStorm);
-        }
+            }
             else if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 StartCoroutine(SpawnBossSeedCoroutine());
                 ForceState(BossState.SeedShot);
             }
+
+        if (!hasTakenDamage && bossHealth < maxHealth)
+        {
+            hasTakenDamage = true;
+            objectToEnableOnDamage.SetActive(true);
+        }
     }
 
     public void ActivateBoss()
@@ -120,11 +143,13 @@ public class BossController : MonoBehaviour
                 break;
             case BossState.LeafStorm:
                 Debug.Log("Boss performs Leaf Storm!");
-                StartCooldown();
+                StartCoroutine(LeafStormCoroutine());
+                ForceState(BossState.LeafStorm);
                 break;
             case BossState.SeedShot:
+                Debug.Log("Boss performs Seed Shot!");
                 StartCoroutine(SpawnBossSeedCoroutine());
-                StartCooldown();
+                ForceState(BossState.SeedShot);
                 break;
         }
     }
@@ -143,7 +168,7 @@ public class BossController : MonoBehaviour
         StartCooldown();
     }
 
-    // Seed Shot Attack
+    //Seed Shot Attack
     private IEnumerator SpawnBossSeedCoroutine()
     {
         for (int i = 0; i < numberOfVerticalRows; i++)
@@ -228,5 +253,87 @@ public class BossController : MonoBehaviour
         Gizmos.color = Color.yellow;
         Vector3 center = transform.position;
         Gizmos.DrawWireCube(center + new Vector3(0f, leafStormYOffset, 0f), new Vector3(leafStormWidth, leafStormHeight, 0f));
+    }
+
+    //Root Erupt Attack
+    private IEnumerator RootEruptCoroutine()
+    {
+        for (int attackCount = 0; attackCount < numberOfRootEruptAttacks; attackCount++)
+        {
+            yield return new WaitForSeconds(rootEruptAttackInterval);
+
+            List<GameObject> shuffledObjects = new List<GameObject>(rootEruptObjects);
+            Shuffle(shuffledObjects);
+
+            int numObjectsToEnable = Random.Range(1, 5);
+
+            for (int i = 0; i < numObjectsToEnable; i++)
+            {
+                if (i < shuffledObjects.Count)
+                {
+                    shuffledObjects[i].SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning("Not enough objects to enable.");
+                    break;
+                }
+            }
+
+            yield return new WaitForSeconds(timeBeforeReset);
+
+            foreach (var obj in shuffledObjects)
+            {
+                obj.SetActive(false);
+            }
+        }
+    }
+
+    private void Shuffle<T>(List<T> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = Random.Range(0, n + 1);
+            T value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
+
+    //Health
+    private void UpdateHealthBar()
+    {
+        if (healthBar != null)
+        {
+            float fillAmount = (float)bossHealth / maxHealth;
+            healthBar.fillAmount = fillAmount;
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        bossHealth -= damage;
+
+        if (!hasTakenDamage && objectToEnableOnDamage != null)
+        {
+            objectToEnableOnDamage.SetActive(true);
+            hasTakenDamage = true;
+        }
+
+        bossHealth -= damage;
+
+        UpdateHealthBar();
+
+        if (bossHealth <= 0)
+        {
+            BossDefeated();
+        }
+    }
+
+    private void BossDefeated()
+    {
+        Debug.Log("Boss defeated!");
     }
 }

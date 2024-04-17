@@ -72,6 +72,18 @@ public class Melee : MonoBehaviour
             }
         }
 
+        if (collision.CompareTag("Boss") && !hitEnemies.Contains(collision))
+        {
+            BossScript bossEnemy = collision.GetComponent<BossScript>();
+            if (bossEnemy != null)
+            {
+                baseMeleeDamage = weaponScript.meleeDamage;
+                float damage = CalculateDamage(baseMeleeDamage);
+                bossEnemy.TakeDamage(damage);
+                hitEnemies.Add(collision);
+            }
+        }
+
         if (collision.CompareTag("breakable"))
         {
             collision.GetComponent<breakable_pot>().Smash();
