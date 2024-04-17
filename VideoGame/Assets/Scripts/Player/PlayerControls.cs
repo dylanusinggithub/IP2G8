@@ -8,6 +8,7 @@ public class PlayerControls : MonoBehaviour
     public float moveSpeed = 4f;
     public float friction = 1.5f;
     public bool hitFlash = false;
+    public bool canMove = true;
 
     public Rigidbody2D rb;
     public Animator animator;
@@ -43,29 +44,30 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
-        if (inDialouge)
-            return;
-        //store last move direction
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        movement.Normalize();
-
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
-
-        if (hitFlash)
+        if (canMove)
         {
-            StartCoroutine(HitFlash());
-        }
+            //store last move direction
+            float moveX = Input.GetAxisRaw("Horizontal");
+            float moveY = Input.GetAxisRaw("Vertical");
 
-        if (movement.magnitude > 0 && canPlayStep)
-        {
-            StartCoroutine(PlayFootstep());
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+
+            movement.Normalize();
+
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+            animator.SetFloat("Speed", movement.sqrMagnitude);
+
+            if (hitFlash)
+            {
+                StartCoroutine(HitFlash());
+            }
+
+            if (movement.magnitude > 0 && canPlayStep)
+            {
+                StartCoroutine(PlayFootstep());
+            }
         }
     }
 

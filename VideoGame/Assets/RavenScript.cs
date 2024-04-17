@@ -80,6 +80,7 @@ public class RavenScript : MonoBehaviour
         }
 
         StartCoroutine(PrintDialogue(dialogueLines[currentLine]));
+        playerControls.canMove = false;
     }
 
     IEnumerator PrintDialogue(string text)
@@ -123,6 +124,7 @@ public class RavenScript : MonoBehaviour
             audioSource.loop = false; // Turn off loop when dialogue ends
             audioSource.Play();
             StartCoroutine(StopAudioAfterDelay(dialogueEndSound.length));
+            playerControls.canMove = true;
         }
     }
 
