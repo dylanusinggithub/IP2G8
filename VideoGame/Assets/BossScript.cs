@@ -40,10 +40,17 @@ public class BossScript : MonoBehaviour
 
     [Header("Boss Health")]
     public float bossHealth;
-    public float maxHealth = 100f;
+    public float maxHealth = 500f;
+    public bool hitFlash = false;
     public Image healthBar;
     private bool hasTakenDamage = false;
     public GameObject objectToEnableOnDamage;
+
+    [Header("References")]
+    private GameManager gameManager;
+    private SpriteRenderer spriteRenderer;
+    private Material originalMaterial;
+    public bool enemyFrozen = false;
 
     public enum BossState
     {
@@ -55,14 +62,20 @@ public class BossScript : MonoBehaviour
     }
 
     private BossState currentState;
-    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentState = BossState.Idle;
         bossHealth = maxHealth;
         objectToEnableOnDamage.SetActive(false);
+
+        //Store the original material
+        if (spriteRenderer != null)
+        {
+            originalMaterial = spriteRenderer.material;
+        }
     }
 
     private void Update()
@@ -112,6 +125,11 @@ public class BossScript : MonoBehaviour
         {
             hasTakenDamage = true;
             objectToEnableOnDamage.SetActive(true);
+        }
+
+        if (hitFlash)
+        {
+            StartCoroutine(HitFlash());
         }
     }
 
@@ -166,6 +184,25 @@ public class BossScript : MonoBehaviour
         currentState = state;
         Debug.Log("Forcing boss into state: " + state);
         StartCooldown();
+    }
+
+    IEnumerator HitFlash()
+    {
+        Material hitFlashMaterial = gameManager.hitFlashMaterial;
+
+        if (hitFlashMaterial != null)
+        {
+            MaterialPropertyBlock materialPropertyBlock = new MaterialPropertyBlock();
+            spriteRenderer.GetPropertyBlock(materialPropertyBlock);
+            materialPropertyBlock.SetColor("_Color", Color.red);
+            spriteRenderer.SetPropertyBlock(materialPropertyBlock);
+        }
+
+        yield return new WaitForSeconds(0.25f);
+        hitFlash = false;
+
+        // Reset material property block to original material
+        spriteRenderer.SetPropertyBlock(null);
     }
 
     //Seed Shot Attack

@@ -5,6 +5,7 @@ public class SpikeScript : MonoBehaviour
 {
     private Animator animator;
     private bool playerOnSpikes = false;
+    private bool playerInSpikes = false;
 
     public int damage = 1;
     public bool canDealDamage = true;
@@ -37,7 +38,7 @@ public class SpikeScript : MonoBehaviour
         {
             animator.SetTrigger("PlayerOn");
             StartCoroutine(Wait());
-
+            playerInSpikes = true;
         }
     }
 
@@ -47,13 +48,17 @@ public class SpikeScript : MonoBehaviour
         {
             animator.SetTrigger("PlayerOff");
             playerOnSpikes = false;
+            playerInSpikes = false;
         }
     }
 
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(2f);
-        playerOnSpikes = true;
+        if (playerInSpikes == true)
+        {
+            playerOnSpikes = true;
+        }
     }
 
     IEnumerator DamageCooldown()

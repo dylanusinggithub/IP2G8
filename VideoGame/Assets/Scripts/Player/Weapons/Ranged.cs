@@ -45,6 +45,18 @@ public class Ranged : MonoBehaviour
             }
         }
 
+        if (collision.CompareTag("Boss"))
+        {
+            BossScript bossEnemy = collision.GetComponent<BossScript>();
+            if (bossEnemy != null)
+            {
+                bossEnemy.gameObject.GetComponent<BossScript>().TakeDamage(rangedDamage);
+                Destroy(gameObject);
+                bossEnemy.hitFlash = true;
+                Instantiate(bloodEffectPrefab, bossEnemy.transform.position, Quaternion.identity);
+            }
+        }
+
         if (collision.CompareTag("breakable"))
         {
             collision.GetComponent<breakable_pot>().Smash();

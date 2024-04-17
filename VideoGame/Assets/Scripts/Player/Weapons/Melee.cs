@@ -80,7 +80,9 @@ public class Melee : MonoBehaviour
                 baseMeleeDamage = weaponScript.meleeDamage;
                 float damage = CalculateDamage(baseMeleeDamage);
                 bossEnemy.TakeDamage(damage);
+                bossEnemy.hitFlash = true;
                 hitEnemies.Add(collision);
+                Instantiate(bloodEffectPrefab, bossEnemy.transform.position, Quaternion.identity);
             }
         }
 

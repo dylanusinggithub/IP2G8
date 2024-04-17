@@ -300,8 +300,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
-
     IEnumerator HitFlash()
     {
         Material hitFlashMaterial = gameManager.hitFlashMaterial;

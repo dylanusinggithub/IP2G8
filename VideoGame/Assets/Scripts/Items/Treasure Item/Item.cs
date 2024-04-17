@@ -112,11 +112,19 @@ public class Item : MonoBehaviour
 
                     //Boots Action
                     HealthSystem shieldSystem = FindFirstObjectByType<HealthSystem>();
-                    shieldSystem.ItemShieldAdd();
+
+                    if(shieldSystem.hasShield != true)
+                    {
+                        shieldSystem.ItemShieldAdd();
+                    }
+                    else
+                    {
+                        shieldSystem.ItemHealthIncrease();
+                    }
 
                     //Boots Description
                     itemName = "Steelcap Boots";
-                    description = "Temporary Armor Gain";
+                    description = "Temporary Armor Gain or Health Upgrade If Already Armoured!";
                     rarity = "common";
 
                 break;
