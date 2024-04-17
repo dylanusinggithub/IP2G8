@@ -153,7 +153,7 @@ public class Enemy : MonoBehaviour
             spriteRenderer.sortingOrder = 2;
 
             //Change the scale of the sprite / My references are too small can be removed later on
-            float scaleMultiplier = 1f;
+            float scaleMultiplier = 1.25f;
             newItem.transform.localScale = new Vector3(scaleMultiplier, scaleMultiplier, 1.0f);
 
             //Attach item script to the object and run internal function
