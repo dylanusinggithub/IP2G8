@@ -2,43 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
     [Header("Menu Game Objects")]
-    public GameObject startGameButton;
-    public GameObject statisticsButton;
-    public GameObject optionsButton;
-    public GameObject exitButton;
+    public Button startGameButton;
+    public Button optionsButton;
+    public Button exitButton;
+
+    public GameObject settingsMenu;
 
     void Start()
     {
         //Add listeners
-        startGameButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(StartGame);
-        statisticsButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(ShowStatistics);
-        optionsButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(ShowOptions);
-        exitButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(ExitGame);
+        startGameButton.onClick.AddListener(StartGame);
+        optionsButton.onClick.AddListener(ShowOptions);
+        exitButton.onClick.AddListener(ExitGame);
     }
 
-    void StartGame()
+    public void StartGame()
     {
         //Start Game
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("JackTest");
     }
 
-    void ShowStatistics()
+    public void ShowOptions()
     {
-        //Show Statistics
-        Debug.Log("Show Statistics");
+        settingsMenu.SetActive(true);
     }
 
-    void ShowOptions()
-    {
-        //Show Options
-        Debug.Log("Show Options");
-    }
-
-    void ExitGame()
+    public void ExitGame()
     {
         //Quit the game
         Application.Quit();
