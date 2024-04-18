@@ -100,10 +100,10 @@ public class ShopEpicItem : MonoBehaviour
     // Method to enable collider and handle purchase
     public void HandlePurchase()
     {
-        if (gameManager != null && gameManager.gemCount >= 10)
+        if (gameManager != null && gameManager.gemCount >= 30)
         {
             itemCollider.enabled = true;
-           // gameManager.RemoveGems(10); // Remove gems from player's count
+            //gameManager.RemoveGems(10); 
         }
     }
 }

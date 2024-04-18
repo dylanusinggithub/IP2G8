@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 8585731174261039309}
   - component: {fileID: 7240831080985796438}
   - component: {fileID: 995460981973690151}
+  - component: {fileID: 9092282430048748900}
   m_Layer: 0
   m_Name: pot
   m_TagString: breakable
@@ -347,3 +348,19 @@ MonoBehaviour:
   - {fileID: 6948363335905235593, guid: 353a593af7e96f7478af63a342ad888c, type: 3}
   - {fileID: -16793423984005362, guid: eb607a8113dd4e54db8ac8264f1d7c87, type: 3}
   potDropChance: 40
+--- !u!114 &9092282430048748900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8773246896058160054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

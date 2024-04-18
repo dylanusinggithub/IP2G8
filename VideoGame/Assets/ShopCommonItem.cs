@@ -96,7 +96,7 @@ public class ShopCommonItem : MonoBehaviour
     // Method to enable collider and handle purchase
     public void HandlePurchase()
     {
-        if (gameManager != null && gameManager.gemCount >= 2)
+        if (gameManager != null && gameManager.gemCount >= 10)
         {
             itemCollider.enabled = true;
            // gameManager.RemoveGems(2); // Remove gems from player's count
