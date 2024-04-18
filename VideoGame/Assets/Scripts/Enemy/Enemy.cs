@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour
     private GameObject keepersParticleInstance;
     private Animator animator;
 
+    private AudioManager audioManager;
+
     public bool enemyFrozen = false;
     public bool isFlipped = false;
 
@@ -53,6 +55,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
+        audioManager = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioManager>();
 
         //Store the original material
         if (spriteRenderer != null)
@@ -73,6 +76,7 @@ public class Enemy : MonoBehaviour
         if (isDead)
         {
             Destroy(me);
+            audioManager.PlayAudio("WalkerDeath");
         }
 
         if (hitFlash)
