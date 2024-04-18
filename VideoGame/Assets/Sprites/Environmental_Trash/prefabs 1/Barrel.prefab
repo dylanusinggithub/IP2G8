@@ -125,6 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e5a652e76279d4f9f1bab655d1b467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barrelDrops:
+  - {fileID: 6948363335905235593, guid: 353a593af7e96f7478af63a342ad888c, type: 3}
+  - {fileID: -16793423984005362, guid: eb607a8113dd4e54db8ac8264f1d7c87, type: 3}
+  barrelDropChance: 30
 --- !u!61 &5379079742696156243
 BoxCollider2D:
   m_ObjectHideFlags: 0
