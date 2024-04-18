@@ -30,27 +30,27 @@ public class ItemChooser : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int seed = System.DateTime.Now.Millisecond;
+        Random.InitState(seed);
+
         SpawnRandomItem();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    SpawnRandomItem();
-        //}
+        int seed = System.DateTime.Now.Millisecond;
+        Random.InitState(seed);
     }
 
     public void SpawnRandomItem()
     {
-        //Create new seed based on game tick so it's random each time
-        Random.InitState(System.Environment.TickCount);
+        Random.InitState((int)System.DateTime.Now.Ticks);
 
-        if(!isBlessed) { 
-            //Generate a random value between 0 -> 100
-            int randomValue = Random.Range(0, 100);
+        int randomValue = Random.Range(0, 100);
 
+        if (!isBlessed)
+        {
             GameObject particlesPrefab = null;
 
             if (randomValue <= 69)
@@ -58,12 +58,12 @@ public class ItemChooser : MonoBehaviour
                 particlesPrefab = commonParticle;
                 SpawnItem(commonItems, particlesPrefab);
             }
-            else if (randomValue >= 70 && randomValue <= 85)
+            else if (randomValue <= 85)
             {
                 particlesPrefab = rareParticle;
                 SpawnItem(rareItems, particlesPrefab);
             }
-            else if (randomValue >= 86 && randomValue <= 95)
+            else if (randomValue <= 95)
             {
                 particlesPrefab = epicParticle;
                 SpawnItem(epicItems, particlesPrefab);
@@ -73,18 +73,14 @@ public class ItemChooser : MonoBehaviour
                 particlesPrefab = legendaryParticle;
                 SpawnItem(legendaryItems, particlesPrefab);
             }
-            Debug.Log(randomValue);
-        } 
+        }
         else
         {
-            GameObject particlesPrefab = null;
-
-            particlesPrefab = blessedParticle;
+            GameObject particlesPrefab = blessedParticle;
             SpawnItem(blessedItems, particlesPrefab);
         }
-
-
     }
+
 
     void SpawnItem(Sprite[] itemsArray, GameObject particlesPrefab)
     {

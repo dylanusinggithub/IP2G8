@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class BossScript : MonoBehaviour
 {
-    public float minInterval = 2f;
-    public float maxInterval = 5f;
-    public float attackCooldown = 1f;
-
     private bool isActive = false;
     private float timer = 0f;
     private float cooldownTimer = 0f;
@@ -20,6 +16,8 @@ public class BossScript : MonoBehaviour
     public float rootEruptAttackInterval = 5f;
     public float timeBeforeReset = 3f;
 
+    public float rootEruptCooldown = 20f;
+
     [Header("Seed Shot Attack")]
     public GameObject bossSeedPrefab;
     public float horizontalOffset = 3.25f;
@@ -27,6 +25,8 @@ public class BossScript : MonoBehaviour
     public int numberOfSeedsInRow = 15;
     public float delayBetweenSeeds = 0.6f;
     public float horizontalRowOffset = 0.5f;
+
+    public float seedShotCooldown = 10f;
 
     [Header("Leaf Storm Attack")]
     public GameObject warningAreaPrefab;
@@ -37,6 +37,8 @@ public class BossScript : MonoBehaviour
     public float leafStormYOffset = -10.69f;
     public float minSpawnDistance = 5f;
     private List<Vector3> spawnedPositions = new List<Vector3>();
+
+    public float leafStormCooldown = 20f;
 
     [Header("Boss Health")]
     public float bossHealth;
@@ -55,7 +57,6 @@ public class BossScript : MonoBehaviour
     public enum BossState
     {
         Idle,
-        BranchSwipe,
         RootErupt,
         LeafStorm,
         SeedShot
@@ -80,46 +81,43 @@ public class BossScript : MonoBehaviour
 
     private void Update()
     {
-        //if (isActive)
-        //{
-        //    if (!isOnCooldown)
-        //    {
-        //        timer -= Time.deltaTime;
+        if (isActive && hasTakenDamage)
+        {
+            if (!isOnCooldown)
+            {
+                timer -= Time.deltaTime;
 
-        //        if (timer <= 0f)
-        //        {
-        //            ChangeState();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        cooldownTimer -= Time.deltaTime;
-        //        if (cooldownTimer <= 0f)
-        //        {
-        //            isOnCooldown = false;
-        //        }
-        //    }
+                if (timer <= 0f)
+                {
+                    ChangeState();
+                }
+            }
+            else
+            {
+                cooldownTimer -= Time.deltaTime;
+                if (cooldownTimer <= 0f)
+                {
+                    isOnCooldown = false;
+                }
+            }
 
-            //DEBUG
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                ForceState(BossState.BranchSwipe);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                StartCoroutine(RootEruptCoroutine());
-                ForceState(BossState.RootErupt);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                StartCoroutine(LeafStormCoroutine());
-                ForceState(BossState.LeafStorm);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                StartCoroutine(SpawnBossSeedCoroutine());
-                ForceState(BossState.SeedShot);
-            }
+        }
+            ////DEBUG
+            //else if (Input.GetKeyDown(KeyCode.Alpha2))
+            //{
+            //    StartCoroutine(RootEruptCoroutine());
+            //    ForceState(BossState.RootErupt);
+            //}
+            //else if (Input.GetKeyDown(KeyCode.Alpha3))
+            //{
+            //    StartCoroutine(LeafStormCoroutine());
+            //    ForceState(BossState.LeafStorm);
+            //}
+            //else if (Input.GetKeyDown(KeyCode.Alpha4))
+            //{
+            //    StartCoroutine(SpawnBossSeedCoroutine());
+            //    ForceState(BossState.SeedShot);
+            //}
 
         if (!hasTakenDamage && bossHealth < maxHealth)
         {
@@ -136,46 +134,49 @@ public class BossScript : MonoBehaviour
     public void ActivateBoss()
     {
         isActive = true;
-        timer = Random.Range(minInterval, maxInterval);
+        timer = 2f;
     }
 
     private void ChangeState()
     {
-        int nextState = Random.Range(0, 5);
+        int nextState = Random.Range(0, 4);
 
         currentState = (BossState)nextState;
 
-        timer = Random.Range(minInterval, maxInterval);
+        timer = 2f;
 
         switch (currentState)
         {
             case BossState.Idle:
                 break;
-            case BossState.BranchSwipe:
-                Debug.Log("Boss performs Branch Swipe!");
-                StartCooldown();
-                break;
             case BossState.RootErupt:
                 Debug.Log("Boss performs Root Erupt!");
-                StartCooldown();
+                StartCoroutine(RootEruptCoroutine());
+                ForceState(BossState.RootErupt);
+
+                StartCooldown(rootEruptCooldown);
                 break;
             case BossState.LeafStorm:
                 Debug.Log("Boss performs Leaf Storm!");
                 StartCoroutine(LeafStormCoroutine());
                 ForceState(BossState.LeafStorm);
+
+                StartCooldown(leafStormCooldown);
                 break;
             case BossState.SeedShot:
                 Debug.Log("Boss performs Seed Shot!");
                 StartCoroutine(SpawnBossSeedCoroutine());
                 ForceState(BossState.SeedShot);
+
+                StartCooldown(seedShotCooldown);
                 break;
         }
     }
 
-    private void StartCooldown()
+    private void StartCooldown(float cooldown)
     {
         isOnCooldown = true;
-        cooldownTimer = attackCooldown;
+        cooldownTimer = cooldown;
     }
 
     //DEBUG
@@ -183,7 +184,6 @@ public class BossScript : MonoBehaviour
     {
         currentState = state;
         Debug.Log("Forcing boss into state: " + state);
-        StartCooldown();
     }
 
     IEnumerator HitFlash()
@@ -302,7 +302,7 @@ public class BossScript : MonoBehaviour
             List<GameObject> shuffledObjects = new List<GameObject>(rootEruptObjects);
             Shuffle(shuffledObjects);
 
-            int numObjectsToEnable = Random.Range(1, 5);
+            int numObjectsToEnable = Random.Range(1, 4);
 
             for (int i = 0; i < numObjectsToEnable; i++)
             {
@@ -357,6 +357,7 @@ public class BossScript : MonoBehaviour
         {
             objectToEnableOnDamage.SetActive(true);
             hasTakenDamage = true;
+            ActivateBoss();
         }
 
         bossHealth -= damage;

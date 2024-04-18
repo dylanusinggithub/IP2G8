@@ -72,7 +72,7 @@ public class BossRoot : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (isActive && playerInTrigger && canDealDamage && other.CompareTag("Player"))
+        if (spriteRenderer.color.a >= 1f && playerInTrigger && canDealDamage && other.CompareTag("Player"))
         {
             HealthSystem healthSystem = other.GetComponent<HealthSystem>();
 

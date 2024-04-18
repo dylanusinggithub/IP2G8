@@ -128,7 +128,7 @@ MonoBehaviour:
   barrelDrops:
   - {fileID: 6948363335905235593, guid: 353a593af7e96f7478af63a342ad888c, type: 3}
   - {fileID: -16793423984005362, guid: eb607a8113dd4e54db8ac8264f1d7c87, type: 3}
-  barrelDropChance: 30
+  barrelDropChance: 40
 --- !u!61 &5379079742696156243
 BoxCollider2D:
   m_ObjectHideFlags: 0

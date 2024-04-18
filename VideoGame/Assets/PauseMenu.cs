@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
@@ -8,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     [Header("Pause Variables")]
     private bool isPaused = false;
     public GameObject pauseMenu;
+
+    public Button mainMenu;
     public Button resumeButton;
     public Button quitButton;
 
@@ -15,6 +18,7 @@ public class PauseMenu : MonoBehaviour
     {
         resumeButton.onClick.AddListener(ResumeGame);
         quitButton.onClick.AddListener(QuitGame);
+        mainMenu.onClick.AddListener(MenuButton);
     }
 
     void Update()
@@ -33,6 +37,12 @@ public class PauseMenu : MonoBehaviour
         {
             pauseMenu.SetActive(isPaused);
         }
+    }
+
+    public void MenuButton()
+    {
+        SceneManager.LoadScene("Main Menu");
+        Time.timeScale = 1;
     }
 
     public void ResumeGame()
