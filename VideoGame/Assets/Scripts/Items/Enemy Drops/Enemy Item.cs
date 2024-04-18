@@ -9,6 +9,8 @@ public class EnemyItem : MonoBehaviour
 
     private Transform player;
 
+    private AudioManager audioManager;
+
     public float itemSpeed = 5f;
 
 
@@ -21,6 +23,7 @@ public class EnemyItem : MonoBehaviour
     {
         //Get the player's transform
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        audioManager = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -65,7 +68,7 @@ public class EnemyItem : MonoBehaviour
 
                     //Gems Action
                     gameManager.AddGems(1);
-
+                    audioManager.PlayAudio("GemPickup");
                     break;
 
                 case "heart_half_0":
@@ -73,7 +76,7 @@ public class EnemyItem : MonoBehaviour
                     //Heart Action
                     HealthSystem healthSystem = FindFirstObjectByType<HealthSystem>();
                     healthSystem.Heal(1);
-
+                    audioManager.PlayAudio("Heal");
                     break;
 
                 //Default Action

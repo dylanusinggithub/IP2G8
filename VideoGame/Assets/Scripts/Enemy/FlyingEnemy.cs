@@ -30,6 +30,8 @@ public class FlyingEnemy : MonoBehaviour
     public GameObject spawnLocation;
     public int damage = 1;
 
+    private AudioManager audioManager;
+
     [Header("References")]
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
@@ -52,6 +54,7 @@ public class FlyingEnemy : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         gameManager = FindFirstObjectByType<GameManager>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioManager>();
 
         //Store the original material
         if (spriteRenderer != null)
@@ -84,6 +87,7 @@ public class FlyingEnemy : MonoBehaviour
         if (isDead)
         {
             Destroy(me);
+            audioManager.PlayAudio("FlyingDeath");
         }
 
         if (hitFlash)
