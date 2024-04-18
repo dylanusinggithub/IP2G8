@@ -43,7 +43,6 @@ public class BossScript : MonoBehaviour
     [Header("Boss Health")]
     public float bossHealth;
     public float maxHealth = 500f;
-    public bool hitFlash = false;
     public Image healthBar;
     private bool hasTakenDamage = false;
     public GameObject objectToEnableOnDamage;
@@ -53,6 +52,8 @@ public class BossScript : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Material originalMaterial;
     public bool enemyFrozen = false;
+
+    public GameObject victoryScreen;
 
     public enum BossState
     {
@@ -102,32 +103,27 @@ public class BossScript : MonoBehaviour
             }
 
         }
-            ////DEBUG
-            //else if (Input.GetKeyDown(KeyCode.Alpha2))
-            //{
-            //    StartCoroutine(RootEruptCoroutine());
-            //    ForceState(BossState.RootErupt);
-            //}
-            //else if (Input.GetKeyDown(KeyCode.Alpha3))
-            //{
-            //    StartCoroutine(LeafStormCoroutine());
-            //    ForceState(BossState.LeafStorm);
-            //}
-            //else if (Input.GetKeyDown(KeyCode.Alpha4))
-            //{
-            //    StartCoroutine(SpawnBossSeedCoroutine());
-            //    ForceState(BossState.SeedShot);
-            //}
+        ////DEBUG
+        //else if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    StartCoroutine(RootEruptCoroutine());
+        //    ForceState(BossState.RootErupt);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    StartCoroutine(LeafStormCoroutine());
+        //    ForceState(BossState.LeafStorm);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    StartCoroutine(SpawnBossSeedCoroutine());
+        //    ForceState(BossState.SeedShot);
+        //}
 
         if (!hasTakenDamage && bossHealth < maxHealth)
         {
             hasTakenDamage = true;
             objectToEnableOnDamage.SetActive(true);
-        }
-
-        if (hitFlash)
-        {
-            StartCoroutine(HitFlash());
         }
     }
 
@@ -186,25 +182,6 @@ public class BossScript : MonoBehaviour
         Debug.Log("Forcing boss into state: " + state);
     }
 
-    IEnumerator HitFlash()
-    {
-        Material hitFlashMaterial = gameManager.hitFlashMaterial;
-
-        if (hitFlashMaterial != null)
-        {
-            MaterialPropertyBlock materialPropertyBlock = new MaterialPropertyBlock();
-            spriteRenderer.GetPropertyBlock(materialPropertyBlock);
-            materialPropertyBlock.SetColor("_Color", Color.red);
-            spriteRenderer.SetPropertyBlock(materialPropertyBlock);
-        }
-
-        yield return new WaitForSeconds(0.25f);
-        hitFlash = false;
-
-        // Reset material property block to original material
-        spriteRenderer.SetPropertyBlock(null);
-    }
-
     //Seed Shot Attack
     private IEnumerator SpawnBossSeedCoroutine()
     {
@@ -238,8 +215,8 @@ public class BossScript : MonoBehaviour
     private IEnumerator LeafStormCoroutine()
     {
         spawnedPositions.Clear();
-        int seed = Random.Range(0, int.MaxValue); 
-        Random.InitState(seed); 
+        int seed = Random.Range(0, int.MaxValue);
+        Random.InitState(seed);
 
         for (int i = 0; i < numberOfWarningAreas; i++)
         {
@@ -249,7 +226,7 @@ public class BossScript : MonoBehaviour
                 Random.InitState(++seed);
                 randomPosition = GetRandomPositionInBounds();
             }
-            spawnedPositions.Add(randomPosition); 
+            spawnedPositions.Add(randomPosition);
             SpawnWarningArea(randomPosition);
             yield return new WaitForSeconds(delayBetweenStorms);
         }
@@ -366,12 +343,8 @@ public class BossScript : MonoBehaviour
 
         if (bossHealth <= 0)
         {
-            BossDefeated();
+            victoryScreen.SetActive(true);
+            objectToEnableOnDamage.SetActive(false);
         }
-    }
-
-    private void BossDefeated()
-    {
-        Debug.Log("Boss defeated!");
     }
 }

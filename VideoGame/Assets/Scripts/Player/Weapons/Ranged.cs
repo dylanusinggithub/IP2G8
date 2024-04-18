@@ -48,11 +48,12 @@ public class Ranged : MonoBehaviour
         if (collision.CompareTag("Boss"))
         {
             BossScript bossEnemy = collision.GetComponent<BossScript>();
+            BossArtScript bossArtEnemy = FindFirstObjectByType<BossArtScript>();
             if (bossEnemy != null)
             {
                 bossEnemy.gameObject.GetComponent<BossScript>().TakeDamage(rangedDamage);
                 Destroy(gameObject);
-                bossEnemy.hitFlash = true;
+                bossArtEnemy.hitFlash = true;
                 Instantiate(bloodEffectPrefab, bossEnemy.transform.position, Quaternion.identity);
             }
         }

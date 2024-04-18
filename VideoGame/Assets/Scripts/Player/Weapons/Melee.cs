@@ -75,12 +75,13 @@ public class Melee : MonoBehaviour
         if (collision.CompareTag("Boss") && !hitEnemies.Contains(collision))
         {
             BossScript bossEnemy = collision.GetComponent<BossScript>();
+            BossArtScript bossArtEnemy = FindFirstObjectByType<BossArtScript>();
             if (bossEnemy != null)
             {
                 baseMeleeDamage = weaponScript.meleeDamage;
                 float damage = CalculateDamage(baseMeleeDamage);
                 bossEnemy.TakeDamage(damage);
-                bossEnemy.hitFlash = true;
+                bossArtEnemy.hitFlash = true;
                 hitEnemies.Add(collision);
                 Instantiate(bloodEffectPrefab, bossEnemy.transform.position, Quaternion.identity);
             }
