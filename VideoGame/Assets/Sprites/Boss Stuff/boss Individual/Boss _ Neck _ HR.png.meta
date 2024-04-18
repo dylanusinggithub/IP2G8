@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Boss _ Neck _ HR_0: 5362366534599626261
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
