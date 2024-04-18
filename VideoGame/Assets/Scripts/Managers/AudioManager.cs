@@ -38,4 +38,9 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("Audio clip with file name " + fileName + " not found!");
         }
     }
+
+    public void StopAllMusic()
+    {
+        audioSource.Stop();
+    }
 }

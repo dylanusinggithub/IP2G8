@@ -55,6 +55,8 @@ public class BossScript : MonoBehaviour
 
     public GameObject victoryScreen;
 
+    private AudioManager audioManager;
+
     public enum BossState
     {
         Idle,
@@ -72,6 +74,8 @@ public class BossScript : MonoBehaviour
         currentState = BossState.Idle;
         bossHealth = maxHealth;
         objectToEnableOnDamage.SetActive(false);
+
+        audioManager = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioManager>();
 
         //Store the original material
         if (spriteRenderer != null)
@@ -130,6 +134,8 @@ public class BossScript : MonoBehaviour
     public void ActivateBoss()
     {
         isActive = true;
+        audioManager.StopAllMusic();
+        audioManager.PlayAudio("BossMusic");
         timer = 2f;
     }
 

@@ -324,13 +324,13 @@ public class FlyingEnemy : MonoBehaviour
         spriteRenderer.SetPropertyBlock(null);
     }
 
-    void OnGUI()
-    {
-        if (target != null && !isDead)
-        {
-            Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-            screenPosition.y += 40;
-            GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 100, 20), "HP: " + health);
-        }
-    }
+    //void OnGUI()
+    //{
+    //    if (target != null && !isDead)
+    //    {
+    //        Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+    //        screenPosition.y += 40;
+    //        GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 100, 20), "HP: " + health);
+    //    }
+    //}
 }
