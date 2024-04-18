@@ -21,7 +21,8 @@ public class WeaponAim : MonoBehaviour
     public float fireForce = 10f;
     public float rangedAttackSpeed = 1f;
     public float shootTimer = 0f;
-    public bool canShoot = true;
+    public bool canShoot = true; 
+    public GameObject playerBulletTrailPrefab;
 
     [Header("Critical Hit Settings")]
     public float criticalChance = 10f;
@@ -90,6 +91,8 @@ public class WeaponAim : MonoBehaviour
         canShoot = false;
         GameObject intBullet = Instantiate(bullet, Aim.position, Aim.rotation);
         intBullet.GetComponent<Rigidbody2D>().AddForce(-Aim.up * fireForce, ForceMode2D.Impulse);
+        Instantiate(playerBulletTrailPrefab, transform.position, Quaternion.identity);
+
         audioManager.PlayAudio("ThrowingSound");
     }
 
