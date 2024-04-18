@@ -141,7 +141,7 @@ public class BossScript : MonoBehaviour
 
     private void ChangeState()
     {
-        int nextState = Random.Range(0, 4);
+        int nextState = Random.Range(1, 4);
 
         currentState = (BossState)nextState;
 
@@ -151,6 +151,7 @@ public class BossScript : MonoBehaviour
         {
             case BossState.Idle:
                 break;
+
             case BossState.RootErupt:
                 Debug.Log("Boss performs Root Erupt!");
                 StartCoroutine(RootEruptCoroutine());
